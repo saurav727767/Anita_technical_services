@@ -668,23 +668,54 @@ function handleMediaImport(e) {
   const files = e.target.files;
   if (!files || files.length === 0) return;
   
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
-    const type = file.type.startsWith('audio') ? 'audio' : 'video';
-    
-    // Add dummy asset
+  const file = files[0];
+  const type = file.type.startsWith('audio') ? 'audio' : 'video';
+  
+  showToast(`Uploading ${file.name} to server...`, 'info');
+  
+  const formData = new FormData();
+  formData.append('media', file);
+  
+  const backendBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000'
+    : ''; // Dynamically resolves to same domain in production
+  
+  fetch(`${backendBase}/api/video/upload`, {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      const newAsset = {
+        id: 'import-' + Math.floor(1000 + Math.random() * 9000),
+        name: data.file.name,
+        type: type,
+        duration: 10,
+        color: type === 'video' ? '#8b5cf6' : '#06b6d4',
+        videoUrl: data.file.path // Saves path returned from backend storage
+      };
+      demoAssets.push(newAsset);
+      renderMediaLibrary();
+      showToast(`Uploaded successfully! Add to timeline to edit.`, 'success');
+    } else {
+      showToast(`Upload failed: ${data.message}`, 'error');
+    }
+  })
+  .catch(err => {
+    console.warn("Backend offline, adding as mock asset:", err);
     const newAsset = {
       id: 'import-' + Math.floor(1000 + Math.random() * 9000),
       name: file.name,
       type: type,
       duration: 10,
-      color: type === 'video' ? '#8b5cf6' : '#06b6d4'
+      color: type === 'video' ? '#8b5cf6' : '#06b6d4',
+      videoUrl: ''
     };
-    
     demoAssets.push(newAsset);
-  }
-  renderMediaLibrary();
-  showToast(`Imported ${files.length} custom assets. Select to load on timeline.`, 'success');
+    renderMediaLibrary();
+    showToast(`Server offline. Added as local preview asset.`, 'warning');
+  });
 }
 
 function switchVideoPanel(panelId) {
@@ -726,38 +757,84 @@ function startVideoRendering() {
   const timeLeftText = document.getElementById('render-time-left');
   const statusHeading = document.getElementById('render-status-heading');
   
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += 4;
-    progressFill.style.width = `${progress}%`;
-    progressText.innerText = `Progress: ${progress}%`;
-    
-    const remaining = Math.ceil((100 - progress) / 20);
-    timeLeftText.innerText = `Estimated: ${remaining} seconds left`;
-    
-    if (progress >= 30 && progress < 70) {
-      statusHeading.innerText = "Applying filter pipelines...";
-    } else if (progress >= 70 && progress < 95) {
-      statusHeading.innerText = "Merging audio soundtracks...";
-    } else if (progress >= 95) {
-      statusHeading.innerText = "Finalizing output container...";
-    }
+  const backendBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000'
+    : '';
 
-    if (progress >= 100) {
-      clearInterval(interval);
-      closeExportModal();
-      showToast('Rendering Complete! Exporting video file without watermark.', 'success');
+  // Get active video clips from timeline
+  const payload = {
+    clips: timelineClips.map(c => ({
+      name: c.name,
+      track: c.track,
+      start: c.start,
+      duration: c.duration,
+      speed: c.speed,
+      path: c.videoUrl || c.name
+    })),
+    filter: activeVideoFilter
+  };
+
+  statusHeading.innerText = "Sending editing parameters to rendering engine...";
+  progressFill.style.width = `15%`;
+  
+  fetch(`${backendBase}/api/video/process`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      progressFill.style.width = `100%`;
+      progressText.innerText = "Progress: 100%";
+      timeLeftText.innerText = "Estimated: Completed";
+      statusHeading.innerText = "Video rendering finished!";
       
-      // Simulate file download
-      const element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('Anita Tech Custom Rendered Video File Output'));
-      element.setAttribute('download', `${videoProjectName.replace(/\s+/g, '_')}_render.mp4`);
-      element.style.display = 'none';
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
+      setTimeout(() => {
+        closeExportModal();
+        showToast('Rendering complete! Downloading your edited video file.', 'success');
+        
+        // Trigger download of real processed file
+        const element = document.createElement('a');
+        element.setAttribute('href', backendBase + data.downloadUrl);
+        element.setAttribute('download', data.filename || 'edited_video.mp4');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+      }, 1000);
+    } else {
+      closeExportModal();
+      showToast(`Rendering failed: ${data.message}`, 'error');
     }
-  }, 200);
+  })
+  .catch(err => {
+    console.warn("Backend offline, triggering mockup preview download:", err);
+    // Fall back to original simulated preview download
+    let progress = 15;
+    const interval = setInterval(() => {
+      progress += 10;
+      progressFill.style.width = `${progress}%`;
+      progressText.innerText = `Progress: ${progress}%`;
+      timeLeftText.innerText = `Estimated: ${Math.ceil((100 - progress) / 10)} seconds left`;
+      
+      if (progress >= 100) {
+        clearInterval(interval);
+        closeExportModal();
+        showToast('Rendering Complete (Simulated fallback)!', 'success');
+        
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('Anita Tech Custom Rendered Video File Output'));
+        element.setAttribute('download', `${videoProjectName.replace(/\s+/g, '_')}_render.mp4`);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+      }
+    }, 200);
+  });
 }
 
 // Zoom Timeline

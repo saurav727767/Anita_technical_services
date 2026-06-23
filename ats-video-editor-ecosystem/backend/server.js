@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
+const path = require('path');
+
 // Connect to MongoDB
 connectDB();
 
@@ -12,9 +14,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Serve uploads and processed exports statically
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/exports', express.static(path.join(__dirname, 'public/exports')));
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/projects', require('./routes/projects'));
+app.use('/api/video', require('./routes/video'));
 
 // Simple root endpoint
 app.get('/', (req, res) => {
