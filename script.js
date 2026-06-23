@@ -139,10 +139,10 @@ function showView(viewId) {
     const iframe = document.getElementById('gs-portal-iframe');
     const loader = document.getElementById('gs-iframe-loader');
     if (iframe && !iframe.src) {
-      if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-        iframe.src = window.location.origin + '/graminsaathi/';
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        iframe.src = 'http://localhost:3001';
       } else {
-        iframe.src = 'http://localhost:3000/graminsaathi/';
+        iframe.src = 'https://gramin-saathi.vercel.app';
       }
       iframe.onload = function () {
         if (loader) {
@@ -163,10 +163,8 @@ function showView(viewId) {
 // Open GraminSaathi App in standalone window
 function openGraminSaathi() {
   let gsUrl = 'https://gramin-saathi.vercel.app';
-  if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-    gsUrl = window.location.origin + '/graminsaathi/';
-  } else {
-    gsUrl = 'http://localhost:3000/graminsaathi/';
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    gsUrl = 'http://localhost:3001';
   }
   const newTab = window.open(gsUrl, '_blank');
   if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
