@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>ATS Video Editor - Multi-track timeline video editor</title>
+  <meta name="description"
+    content="Professional client-side online editor featuring a multi-track Video Editor, transition filters, background audio tracks, and watermark-free exports.">
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+
+  <!-- Header Panel -->
+  <header class="editor-header">
+    <div class="header-left">
+      <a href="hub.html" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Hub</span>
+      </a>
+      <span class="divider">|</span>
+      <div class="suite-title">
+        <i class="fa-solid fa-film text-accent-purple"></i>
+        <h1 class="gradient-text">ATS Video Editor</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="save-status" class="save-status text-muted">
+        <i class="fa-solid fa-cloud-arrow-up"></i> Project Saved
+      </span>
+      <button class="btn-theme" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container — full height minus header (70px) -->
+  <div class="suite-container" style="height: calc(100vh - 70px); overflow: hidden;">
+    <main class="suite-workspace" style="width: 100%; overflow: hidden; position: relative;">
+
+      <!-- ================= VIDEO EDITOR VIEW ================= -->
+      <section class="workspace-view active" id="view-video" style="display: block; position: relative; width: 100%; height: 100%; overflow: hidden; padding: 0;">
+        <div class="video-editor-layout">
+
+          <!-- Left Controls Column -->
+          <div class="video-panel-left card-panel">
+            <div class="panel-tabs">
+              <button class="panel-tab-btn active" onclick="switchVideoPanel('media')">
+                <i class="fa-solid fa-folder-open"></i> Media
+              </button>
+              <button class="panel-tab-btn" onclick="switchVideoPanel('text')">
+                <i class="fa-solid fa-t"></i> Text
+              </button>
+              <button class="panel-tab-btn" onclick="switchVideoPanel('filters')">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Effects
+              </button>
+              <button class="panel-tab-btn" onclick="switchVideoPanel('audio')">
+                <i class="fa-solid fa-music"></i> Audio
+              </button>
+            </div>
+
+            <!-- Panel Contents -->
+            <div class="panel-content-wrapper">
+              <!-- Media Section -->
+              <div class="panel-sub-content active" id="panel-media">
+                <div class="file-uploader" onclick="document.getElementById('video-file-input').click()">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <p>Import video, audio, or images</p>
+                  <span>Click to browse device storage</span>
+                  <input type="file" id="video-file-input" style="display: none;" multiple accept="video/*,audio/*,image/*" onchange="handleMediaImport(event)">
+                </div>
+                <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.9rem; text-transform: uppercase; color: var(--text-secondary);">Demo Assets</h4>
+                <div class="media-library" id="media-library-list">
+                  <!-- Demo Assets listed here dynamically -->
+                </div>
+              </div>
+
+              <!-- Text Section -->
+              <div class="panel-sub-content" id="panel-text">
+                <div class="text-tools">
+                  <button class="btn btn-secondary" onclick="addTimelineText('Simple Title')">
+                    <i class="fa-solid fa-plus"></i> Add Simple Text
+                  </button>
+                  <button class="btn btn-secondary" onclick="addTimelineText('🔥 Trending Sticker', true)">
+                    <i class="fa-solid fa-icons"></i> Add Animated Sticker
+                  </button>
+                  <button class="btn btn-secondary" onclick="addTimelineText('Subtitle text template')">
+                    <i class="fa-solid fa-closed-captioning"></i> Add Caption Box
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filters Section -->
+              <div class="panel-sub-content" id="panel-filters">
+                <div class="filters-grid">
+                  <div class="filter-card" onclick="applyVideoFilter('none')">
+                    <div class="filter-preview filter-none"></div>
+                    <span>No Filter</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('grayscale(1)')">
+                    <div class="filter-preview filter-grayscale"></div>
+                    <span>Cinematic B&W</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('sepia(0.8)')">
+                    <div class="filter-preview filter-sepia"></div>
+                    <span>Vintage Sepia</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('hue-rotate(90deg)')">
+                    <div class="filter-preview filter-cyber"></div>
+                    <span>Cyberpunk Neon</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('contrast(1.5) saturate(1.5)')">
+                    <div class="filter-preview filter-pop"></div>
+                    <span>Vibrant Pop</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Audio Section -->
+              <div class="panel-sub-content" id="panel-audio">
+                <div class="audio-tools">
+                  <button class="btn btn-secondary" onclick="addBackgroundMusic('Vibrant Tech Beat', 'audio/beat1.mp3')">
+                    <i class="fa-solid fa-music"></i> Tech Background Beat
+                  </button>
+                  <button class="btn btn-secondary" onclick="addBackgroundMusic('Acoustic Relaxing Melody', 'audio/acoustic.mp3')">
+                    <i class="fa-solid fa-guitar"></i> Acoustic Background
+                  </button>
+                  <button class="btn btn-secondary" onclick="extractAudioFromActive()">
+                    <i class="fa-solid fa-scissors"></i> Extract Audio from Video
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview & Controls Column -->
+          <div class="video-panel-center card-panel">
+            <div class="preview-header">
+              <span class="badge badge-live"><i class="fa-solid fa-circle"></i> Live Preview</span>
+              <div class="project-name-container">
+                <input type="text" id="video-project-name" value="Untitled Video Project" onchange="saveVideoProjectName(this.value)">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+            </div>
+            
+            <div class="video-preview-window">
+              <!-- Visual canvas renderer -->
+              <canvas id="preview-canvas"></canvas>
+              <!-- Video overlay controls -->
+              <div class="canvas-video-source">
+                <video id="source-video-element" style="display: none;" loop></video>
+                <audio id="source-audio-element" style="display: none;" loop></audio>
+              </div>
+            </div>
+
+            <div class="preview-controls">
+              <span id="video-timecode" class="timecode">00:00.00 / 00:30.00</span>
+              <div class="playback-buttons">
+                <button class="control-btn" onclick="playbackRewind()" title="Rewind to start"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="control-btn btn-play" id="btn-video-play" onclick="togglePlayback()" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+                <button class="control-btn" onclick="playbackForward()" title="Fast Forward"><i class="fa-solid fa-forward-step"></i></button>
+              </div>
+              <div class="canvas-actions">
+                <button class="btn btn-secondary btn-icon" onclick="transformPreview('crop')" title="Crop Canvas"><i class="fa-solid fa-crop-simple"></i></button>
+                <button class="btn btn-secondary btn-icon" onclick="transformPreview('rotate')" title="Rotate 90°"><i class="fa-solid fa-rotate-right"></i></button>
+                <button class="btn btn-secondary btn-icon" onclick="transformPreview('flip')" title="Mirror Flip"><i class="fa-solid fa-arrows-left-right"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Properties Column -->
+          <div class="video-panel-right card-panel">
+            <h3>Clip Properties</h3>
+            
+            <!-- Speed Control -->
+            <div class="property-group">
+              <label class="form-label"><i class="fa-solid fa-gauge-high"></i> Speed Adjustment</label>
+              <div class="speed-controls">
+                <input type="range" id="clip-speed-slider" min="0.25" max="4.0" step="0.25" value="1.0" oninput="updateClipSpeed(this.value)">
+                <span id="clip-speed-val">1.0x (Normal)</span>
+              </div>
+            </div>
+
+            <!-- Text Styling Editor -->
+            <div class="property-group" id="property-text-editor" style="display: none;">
+              <label class="form-label"><i class="fa-solid fa-font"></i> Text Content</label>
+              <input type="text" id="text-edit-content" class="form-control" oninput="updateActiveTextContent(this.value)">
+              
+              <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                  <label class="form-label">Font Size</label>
+                  <input type="number" id="text-edit-size" class="form-control" value="28" onchange="updateActiveTextSize(this.value)">
+                </div>
+                <div>
+                  <label class="form-label">Color</label>
+                  <input type="color" id="text-edit-color" class="form-control" value="#ffffff" onchange="updateActiveTextColor(this.value)">
+                </div>
+              </div>
+            </div>
+
+            <!-- Export Modal Trigger -->
+            <div class="property-group" style="margin-top: auto; padding-top: 2rem;">
+              <button class="btn btn-primary" style="width: 100%; font-size: 1rem;" onclick="openExportModal()">
+                <i class="fa-solid fa-download"></i> Export Without Watermark
+              </button>
+            </div>
+          </div>
+
+          <!-- Timeline Grid Area -->
+          <div class="video-timeline card-panel">
+            <div class="timeline-toolbar">
+              <div class="toolbar-left">
+                <button class="toolbar-btn" onclick="splitTimelineClip()" title="Split Clip at Playhead"><i class="fa-solid fa-scissors"></i> Split</button>
+                <button class="toolbar-btn text-danger" onclick="deleteTimelineClip()" title="Delete Selected Clip"><i class="fa-solid fa-trash-can"></i> Delete</button>
+              </div>
+              <div class="toolbar-right">
+                <button class="toolbar-btn" onclick="zoomTimeline(-1)" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                <button class="toolbar-btn" onclick="zoomTimeline(1)" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+              </div>
+            </div>
+
+            <!-- Timeline Tracks Wrapper -->
+            <div class="timeline-tracks-container" id="timeline-tracks-box" onmousemove="handleTimelineScrub(event)" onmousedown="startTimelineScrub(event)" onmouseup="stopTimelineScrub(event)" onmouseleave="stopTimelineScrub(event)">
+              <!-- Scrub Ruler -->
+              <div class="timeline-ruler" id="timeline-ruler-grid">
+                <!-- Numbers added dynamically -->
+              </div>
+              
+              <!-- Tracks list -->
+              <div class="timeline-tracks">
+                <!-- Text track -->
+                <div class="timeline-track-row" data-track="text">
+                  <div class="track-label"><i class="fa-solid fa-t"></i> Text</div>
+                  <div class="track-content" id="track-text-clips">
+                    <!-- Text blocks here -->
+                  </div>
+                </div>
+
+                <!-- Video track -->
+                <div class="timeline-track-row" data-track="video">
+                  <div class="track-label"><i class="fa-solid fa-video"></i> Video</div>
+                  <div class="track-content" id="track-video-clips">
+                    <!-- Video blocks here -->
+                  </div>
+                </div>
+
+                <!-- Audio track -->
+                <div class="timeline-track-row" data-track="audio">
+                  <div class="track-label"><i class="fa-solid fa-music"></i> Audio</div>
+                  <div class="track-content" id="track-audio-clips">
+                    <!-- Audio blocks here -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Playhead Line -->
+              <div class="timeline-playhead" id="timeline-playhead-pointer"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- EXPORT VIDEO PROCESS MODAL -->
+  <div class="modal-overlay" id="export-video-modal" style="display: none;">
+    <div class="export-modal-container">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-film text-accent-cyan"></i> Render & Export Video</h3>
+        <button class="modal-close-btn" onclick="closeExportModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="export-settings-view">
+        <div class="form-group">
+          <label class="form-label">Export Resolution Quality</label>
+          <select id="export-resolution" class="form-control">
+            <option value="1080p" selected>Full HD 1080p (Fastest Web Render)</option>
+            <option value="720p">Standard HD 720p (Compressed File Size)</option>
+            <option value="480p">SD 480p (Mobile Draft View)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Video Format</label>
+          <select id="export-format" class="form-control">
+            <option value="mp4" selected>MP4 (Highly Compatible)</option>
+            <option value="webm">WebM (Optimized for HTML5 Web)</option>
+          </select>
+        </div>
+        <button class="btn btn-cyan" style="width: 100%; margin-top: 1.5rem;" onclick="startVideoRendering()"><i class="fa-solid fa-play"></i> Start Rendering Video</button>
+      </div>
+
+      <!-- Render Progress status -->
+      <div class="modal-body" id="export-rendering-view" style="display: none;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <i class="fa-solid fa-spinner fa-spin" style="font-size: 3rem; color: var(--accent-cyan); margin-bottom: 1rem;"></i>
+          <h4 id="render-status-heading">Encoding frames...</h4>
+          <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.25rem;">Applying speed controls, filter kernels, overlay texts, and mixing soundtracks.</p>
+        </div>
+        <div class="progress-bar-bg" style="margin-bottom: 0.5rem;">
+          <div class="progress-bar-fill cyan" id="render-progress-fill" style="width: 0%;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary);">
+          <span id="render-progress-text">Progress: 0%</span>
+          <span id="render-time-left">Estimated: 5 seconds left</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>

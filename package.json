@@ -1,0 +1,19 @@
+{
+  "name": "anita-technical-services",
+  "version": "1.0.0",
+  "description": "Secure, state-of-the-art web, app, and custom software solutions with C++ Scientific Calculator backend.",
+  "main": "server.js",
+  "scripts": {
+    "compile": "g++ -O3 -o calculator.exe calculator.cpp",
+    "start": "npm run compile && node server.js",
+    "dev": "node server.js",
+    "graminsaathi": "cd GraminSaathi/frontend && set PORT=3001 && npm start",
+    "dev:all": "start cmd /k \"cd GraminSaathi/frontend && set PORT=3001 && npm start\" && node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

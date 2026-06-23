@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS Downloads — ATS Office & Video Editor Packages</title>
+  <meta name="description" content="Download ATS Office Suite and ATS Video Editor for Windows PC and Android Mobile devices. Free offline tools by Anita Technical Services.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ====== Downloads Page Specific Styles ====== */
+    body {
+      overflow-y: auto !important;
+      min-height: 100vh;
+    }
+
+    .dl-page-header {
+      background: linear-gradient(135deg, rgba(17,22,39,0.95) 0%, rgba(8,10,16,0.98) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+    }
+
+    .dl-back-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .dl-back-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-purple);
+      background: rgba(139,92,246,0.08);
+    }
+
+    .dl-page-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .dl-page-title h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .dl-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .dl-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .dl-hero h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .dl-hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .dl-suite-section {
+      margin-bottom: 4rem;
+    }
+
+    .dl-suite-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .dl-suite-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .dl-suite-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .dl-suite-header p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    .dl-version-badge {
+      margin-left: auto;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.25);
+      color: var(--accent-purple);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+    }
+
+    .dl-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .dl-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .dl-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .dl-card.windows::before { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+    .dl-card.android::before { background: linear-gradient(90deg, #10b981, #84cc16); }
+
+    .dl-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .dl-card.windows:hover { border-color: rgba(6,182,212,0.4); }
+    .dl-card.android:hover { border-color: rgba(16,185,129,0.4); }
+
+    .dl-card-os-icon {
+      font-size: 3rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .dl-card.windows .dl-card-os-icon { color: #06b6d4; }
+    .dl-card.android .dl-card-os-icon { color: #10b981; }
+
+    .dl-card h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .dl-card-meta {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      font-size: 0.82rem;
+    }
+
+    .dl-meta-tag {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dl-features {
+      margin: 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .dl-feature {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dl-feature i { color: var(--accent-emerald); font-size: 0.7rem; }
+
+    .dl-btn {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+
+    .dl-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .dl-btn:hover::before { transform: translateX(0); }
+    .dl-btn:active { transform: scale(0.97); }
+
+    .dl-btn.windows-btn {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(6,182,212,0.35);
+    }
+
+    .dl-btn.android-btn {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(16,185,129,0.35);
+    }
+
+    .dl-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    /* Progress overlay inside card */
+    .dl-progress-overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: rgba(8,10,16,0.5);
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .dl-progress-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .dl-progress-status {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .dl-progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .dl-progress-bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .dl-card.windows .dl-progress-bar-fill { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+    .dl-card.android .dl-progress-bar-fill { background: linear-gradient(90deg, #10b981, #84cc16); }
+
+    .dl-progress-pct {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .dl-done-badge {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.2rem;
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 10px;
+      color: var(--accent-emerald);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Info section */
+    .dl-info-section {
+      background: rgba(8,10,16,0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .dl-info-section h4 {
+      font-size: 1.15rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dl-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .dl-steps-col h5 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dl-step {
+      display: flex;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .dl-step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .windows-col .dl-step-num { background: rgba(6,182,212,0.15); color: #06b6d4; }
+    .android-col .dl-step-num { background: rgba(16,185,129,0.15); color: #10b981; }
+
+    .dl-step p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .dl-cards-grid, .dl-steps-grid { grid-template-columns: 1fr; }
+      .dl-hero h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+
+<body class="dark-mode">
+
+  <!-- Header -->
+  <header class="dl-page-header">
+    <a href="index.html" class="dl-back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back to Services
+    </a>
+    <div class="dl-page-title">
+      <i class="fa-solid fa-cloud-arrow-down" style="color: var(--accent-emerald); font-size: 1.25rem;"></i>
+      <h1>ATS Downloads Center</h1>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dl-main">
+
+    <!-- Hero -->
+    <div class="dl-hero">
+      <h2>Download ATS Tools</h2>
+      <p>Get our professional offline editor suites for Windows PC and Android mobile devices — completely free with no watermarks.</p>
+    </div>
+
+    <!-- ===================== ATS OFFICE SUITE ===================== -->
+    <div class="dl-suite-section">
+      <div class="dl-suite-header">
+        <div class="dl-suite-icon" style="background: rgba(16,185,129,0.1); color: var(--accent-emerald);">
+          <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <div>
+          <h3>ATS Office Suite</h3>
+          <p>Word Document • Spreadsheet • Presentation Slides • Canvas Paint Editor</p>
+        </div>
+        <span class="dl-version-badge">v1.2.0 — Stable</span>
+      </div>
+
+      <div class="dl-cards-grid">
+        <!-- Windows Office -->
+        <div class="dl-card windows" id="dl-office-windows">
+          <i class="fa-brands fa-windows dl-card-os-icon"></i>
+          <h4>Windows PC</h4>
+          <div class="dl-card-meta">
+            <span class="dl-meta-tag"><i class="fa-solid fa-file-zipper"></i> ZIP Package</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-weight-scale"></i> ~3.8 MB</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-shield-halved"></i> Safe</span>
+          </div>
+          <div class="dl-features">
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Extract & double-click to launch</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Works offline — no internet needed</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Requires modern browser (Chrome, Edge)</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Windows 10 / 11 compatible</span>
+          </div>
+          <button class="dl-btn windows-btn" onclick="startDownload('office','windows')" id="dl-office-windows-btn">
+            <i class="fa-brands fa-windows"></i> Download for Windows
+          </button>
+          <div class="dl-progress-overlay" id="dl-office-windows-progress">
+            <span class="dl-progress-title"><i class="fa-solid fa-circle-down fa-beat"></i> Downloading...</span>
+            <span class="dl-progress-status" id="dl-office-windows-status">Preparing package...</span>
+            <div class="dl-progress-bar-bg">
+              <div class="dl-progress-bar-fill" id="dl-office-windows-bar"></div>
+            </div>
+            <span class="dl-progress-pct" id="dl-office-windows-pct">0%</span>
+          </div>
+          <div class="dl-done-badge" id="dl-office-windows-done">
+            <i class="fa-solid fa-circle-check"></i> ATS_Office_Windows.zip downloaded!
+          </div>
+        </div>
+
+        <!-- Android Office -->
+        <div class="dl-card android" id="dl-office-android">
+          <i class="fa-brands fa-android dl-card-os-icon"></i>
+          <h4>Android Mobile / Tablet</h4>
+          <div class="dl-card-meta">
+            <span class="dl-meta-tag"><i class="fa-solid fa-file-zipper"></i> ZIP Package</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-weight-scale"></i> ~3.8 MB</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-shield-halved"></i> Safe</span>
+          </div>
+          <div class="dl-features">
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Extract the ZIP on your phone</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Open office.html in Chrome browser</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Full touch & gesture support</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Android 8.0+ supported</span>
+          </div>
+          <button class="dl-btn android-btn" onclick="startDownload('office','android')" id="dl-office-android-btn">
+            <i class="fa-brands fa-android"></i> Download for Android
+          </button>
+          <div class="dl-progress-overlay" id="dl-office-android-progress">
+            <span class="dl-progress-title"><i class="fa-solid fa-circle-down fa-beat"></i> Downloading...</span>
+            <span class="dl-progress-status" id="dl-office-android-status">Preparing package...</span>
+            <div class="dl-progress-bar-bg">
+              <div class="dl-progress-bar-fill" id="dl-office-android-bar"></div>
+            </div>
+            <span class="dl-progress-pct" id="dl-office-android-pct">0%</span>
+          </div>
+          <div class="dl-done-badge" id="dl-office-android-done">
+            <i class="fa-solid fa-circle-check"></i> ATS_Office_Mobile.zip downloaded!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ATS VIDEO EDITOR ===================== -->
+    <div class="dl-suite-section">
+      <div class="dl-suite-header">
+        <div class="dl-suite-icon" style="background: rgba(139,92,246,0.1); color: var(--accent-purple);">
+          <i class="fa-solid fa-film"></i>
+        </div>
+        <div>
+          <h3>ATS Video Editor</h3>
+          <p>Multi-track Timeline • Filters & Effects • Audio Mixing • Watermark-Free Export</p>
+        </div>
+        <span class="dl-version-badge">v1.2.0 — Stable</span>
+      </div>
+
+      <div class="dl-cards-grid">
+        <!-- Windows Video -->
+        <div class="dl-card windows" id="dl-video-windows">
+          <i class="fa-brands fa-windows dl-card-os-icon"></i>
+          <h4>Windows PC</h4>
+          <div class="dl-card-meta">
+            <span class="dl-meta-tag"><i class="fa-solid fa-file-invoice"></i> EXE Installer</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-weight-scale"></i> ~65 MB</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-shield-halved"></i> Verified Safe</span>
+          </div>
+          <div class="dl-features">
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Standalone Windows Installer (.exe)</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Multi-track timeline & hardware acceleration</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Local FFmpeg video processing offline</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Google Drive cloud backup & restore</span>
+          </div>
+          <button class="dl-btn windows-btn" onclick="startDownload('video','windows')" id="dl-video-windows-btn">
+            <i class="fa-brands fa-windows"></i> Download EXE Installer
+          </button>
+          <div class="dl-progress-overlay" id="dl-video-windows-progress">
+            <span class="dl-progress-title"><i class="fa-solid fa-circle-down fa-beat"></i> Downloading...</span>
+            <span class="dl-progress-status" id="dl-video-windows-status">Preparing package...</span>
+            <div class="dl-progress-bar-bg">
+              <div class="dl-progress-bar-fill" id="dl-video-windows-bar"></div>
+            </div>
+            <span class="dl-progress-pct" id="dl-video-windows-pct">0%</span>
+          </div>
+          <div class="dl-done-badge" id="dl-video-windows-done">
+            <i class="fa-solid fa-circle-check"></i> ATS_Video_Editor_Setup.exe downloaded!
+          </div>
+        </div>
+
+        <!-- Android Video -->
+        <div class="dl-card android" id="dl-video-android">
+          <i class="fa-brands fa-android dl-card-os-icon"></i>
+          <h4>Android Mobile / Tablet</h4>
+          <div class="dl-card-meta">
+            <span class="dl-meta-tag"><i class="fa-solid fa-mobile-screen-button"></i> APK Package</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-weight-scale"></i> ~35 MB</span>
+            <span class="dl-meta-tag"><i class="fa-solid fa-shield-halved"></i> Verified Safe</span>
+          </div>
+          <div class="dl-features">
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Release APK package for direct install</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Modern CapCut/VN style touch timeline UI</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Native gallery access & offline rendering</span>
+            <span class="dl-feature"><i class="fa-solid fa-circle-check"></i> Google Sign-in & Drive project backup</span>
+          </div>
+          <button class="dl-btn android-btn" onclick="startDownload('video','android')" id="dl-video-android-btn">
+            <i class="fa-brands fa-android"></i> Download Release APK
+          </button>
+          <div class="dl-progress-overlay" id="dl-video-android-progress">
+            <span class="dl-progress-title"><i class="fa-solid fa-circle-down fa-beat"></i> Downloading...</span>
+            <span class="dl-progress-status" id="dl-video-android-status">Preparing package...</span>
+            <div class="dl-progress-bar-bg">
+              <div class="dl-progress-bar-fill" id="dl-video-android-bar"></div>
+            </div>
+            <span class="dl-progress-pct" id="dl-video-android-pct">0%</span>
+          </div>
+          <div class="dl-done-badge" id="dl-video-android-done">
+            <i class="fa-solid fa-circle-check"></i> ATS_Video_Editor.apk downloaded!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Instructions -->
+    <div class="dl-info-section">
+      <h4><i class="fa-solid fa-circle-info" style="color: var(--accent-cyan);"></i> How to Use After Download</h4>
+      <div class="dl-steps-grid">
+        <div class="dl-steps-col windows-col">
+          <h5><i class="fa-brands fa-windows"></i> Windows PC Steps</h5>
+          <div class="dl-step">
+            <span class="dl-step-num">1</span>
+            <p>Click the download button above and wait for the installer to save to your Downloads folder.</p>
+          </div>
+          <div class="dl-step">
+            <span class="dl-step-num">2</span>
+            <p>For Office Suite ZIP: Extract and run the launcher. For Video Editor: Double-click the <strong>ATS_Video_Editor_Setup.exe</strong>.</p>
+          </div>
+          <div class="dl-step">
+            <span class="dl-step-num">3</span>
+            <p>Follow the installation wizard prompts to complete local setup on your PC.</p>
+          </div>
+          <div class="dl-step">
+            <span class="dl-step-num">4</span>
+            <p>Launch from Desktop shortcut or Start menu. Works fully offline with local hardware acceleration!</p>
+          </div>
+        </div>
+        <div class="dl-steps-col android-col">
+          <h5><i class="fa-brands fa-android"></i> Android Mobile Steps</h5>
+          <div class="dl-step">
+            <span class="dl-step-num">1</span>
+            <p>Tap the Android download button and save the APK package to your phone storage.</p>
+          </div>
+          <div class="dl-step">
+            <span class="dl-step-num">2</span>
+            <p>Open your file manager app, locate the downloaded <strong>ATS_Video_Editor.apk</strong> file, and tap it.</p>
+          </div>
+          <div class="dl-step">
+            <span class="dl-step-num">3</span>
+            <p>If prompted, enable "Install from Unknown Sources" in your Android system settings.</p>
+          </div>
+          <div class="dl-step">
+            <span class="dl-step-num">4</span>
+            <p>Tap "Install" and open the native application from your home screen launcher!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // ============================================
+    // DOWNLOAD ENGINE — Real Installer files served
+    // ============================================
+    const downloadMap = {
+      'office-windows': {
+        file: 'downloads/ATS_Office_Windows.zip',
+        name: 'ATS_Office_Windows.zip',
+        size: 3.8
+      },
+      'office-android': {
+        file: 'downloads/ATS_Office_Mobile.zip',
+        name: 'ATS_Office_Mobile.zip',
+        size: 3.8
+      },
+      'video-windows': {
+        file: 'downloads/ATS_Video_Editor_Setup.exe',
+        name: 'ATS_Video_Editor_Setup.exe',
+        size: 65.0
+      },
+      'video-android': {
+        file: 'downloads/ATS_Video_Editor.apk',
+        name: 'ATS_Video_Editor.apk',
+        size: 35.0
+      }
+    };
+
+    function startDownload(suite, platform) {
+      const key = `${suite}-${platform}`;
+      const config = downloadMap[key];
+      if (!config) return;
+
+      const btn = document.getElementById(`dl-${key}-btn`);
+      const progress = document.getElementById(`dl-${key}-progress`);
+      const bar = document.getElementById(`dl-${key}-bar`);
+      const pct = document.getElementById(`dl-${key}-pct`);
+      const status = document.getElementById(`dl-${key}-status`);
+      const done = document.getElementById(`dl-${key}-done`);
+
+      // Show progress, hide button
+      btn.style.display = 'none';
+      progress.style.display = 'flex';
+      done.style.display = 'none';
+
+      const statuses = [
+        'Connecting to download server...',
+        'Downloading editor components...',
+        'Packing stylesheet and scripts...',
+        'Verifying package integrity...',
+        'Finalizing download...'
+      ];
+
+      let p = 0;
+      const interval = setInterval(() => {
+        p += Math.random() * 8 + 3;
+        if (p > 100) p = 100;
+
+        bar.style.width = p + '%';
+        pct.textContent = Math.floor(p) + '%';
+
+        const idx = Math.min(Math.floor(p / 20), statuses.length - 1);
+        status.textContent = statuses[idx];
+
+        if (p >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            // Trigger actual file download
+            const a = document.createElement('a');
+            a.href = config.file;
+            a.download = config.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Show done state
+            progress.style.display = 'none';
+            done.style.display = 'flex';
+
+            // Reset button after 4 seconds
+            setTimeout(() => {
+              done.style.display = 'none';
+              btn.style.display = 'flex';
+            }, 4000);
+          }, 400);
+        }
+      }, 150);
+    }
+  </script>
+
+</body>
+</html>

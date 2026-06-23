@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Anita Tech Creative Suite Hub - Selection Panel</title>
+  <meta name="description"
+    content="Select and launch professional online editor applications by Anita Tech. Choose between ATS Office and ATS Video Editor.">
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Premium hub grid styling overrides */
+    .hub-container {
+      max-width: 1000px;
+      margin: 5rem auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    .hub-header {
+      margin-bottom: 4rem;
+    }
+    .hub-header h2 {
+      font-size: 2.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .hub-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .hub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .hub-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 3.5rem 2rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hub-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+    .hub-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .hub-card:hover::before {
+      opacity: 1;
+    }
+    .hub-card.office-card:hover {
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .hub-card.video-card:hover {
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+    .hub-card-icon {
+      font-size: 4.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.4s ease;
+    }
+    .hub-card:hover .hub-card-icon {
+      transform: scale(1.1);
+    }
+    .hub-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    .hub-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    .hub-card-footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .hub-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .hub-container {
+        margin: 2rem auto;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark-mode">
+
+  <!-- Header Panel -->
+  <header class="editor-header">
+    <div class="header-left">
+      <a href="/" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Services</span>
+      </a>
+      <span class="divider">|</span>
+      <div class="suite-title">
+        <i class="fa-solid fa-wand-magic-sparkles text-accent-cyan"></i>
+        <h1 class="gradient-text">Anita Tech Creative Hub</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn-theme" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hub Main Content -->
+  <div class="hub-container">
+    <div class="hub-header">
+      <h2 class="gradient-text">Choose Your Workspace</h2>
+      <p>Launch dedicated tools package for documents or video creation</p>
+    </div>
+
+    <div class="hub-grid">
+      <!-- ATS Office Suite -->
+      <div class="hub-card office-card" onclick="window.location.href='office.html'">
+        <div class="hub-card-icon" style="color: var(--accent-emerald);">
+          <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <h3>ATS Office Suite</h3>
+        <p>Edit rich documents, design presentations, manage grid spreadsheets, and draw sketches on canvas paint.</p>
+        <div class="hub-card-footer" style="color: var(--accent-emerald);">
+          <span>Launch Office Workspace</span> <i class="fa-solid fa-circle-play"></i>
+        </div>
+      </div>
+
+      <!-- ATS Video Editor -->
+      <div class="hub-card video-card" onclick="window.location.href='video.html'">
+        <div class="hub-card-icon" style="color: var(--accent-purple);">
+          <i class="fa-solid fa-circle-play"></i>
+        </div>
+        <h3>ATS Video Editor</h3>
+        <p>Import clips, trim timelines, overlay stickers/texts, add backing soundtracks, and render watermark-free videos.</p>
+        <div class="hub-card-footer" style="color: var(--accent-purple);">
+          <span>Launch Video Editor</span> <i class="fa-solid fa-circle-play"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle helpers local to hub page
+    let currentTheme = 'dark';
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('anita_editor_theme')) {
+        setTheme(localStorage.getItem('anita_editor_theme'));
+      }
+    });
+
+    function toggleTheme() {
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    }
+
+    function setTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('anita_editor_theme', theme);
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (theme === 'light') {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        themeIcon.className = 'fa-solid fa-sun';
+      } else {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
+        themeIcon.className = 'fa-solid fa-moon';
+      }
+    }
+  </script>
+</body>
+
+</html>

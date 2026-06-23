@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>ATS Office Suite - Word, Excel, PowerPoint & Paint</title>
+  <meta name="description"
+    content="Professional client-side office suite featuring documents word processor, spreadsheets grids, presentation hub, and canvas paint.">
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+
+  <!-- Header Panel -->
+  <header class="editor-header">
+    <div class="header-left">
+      <a href="hub.html" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Hub</span>
+      </a>
+      <span class="divider">|</span>
+      <div class="suite-title">
+        <i class="fa-solid fa-briefcase text-accent-emerald"></i>
+        <h1 class="gradient-text">ATS Office Suite</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="save-status" class="save-status text-muted">
+        <i class="fa-solid fa-cloud-arrow-up"></i> Project Saved
+      </span>
+      <button class="btn-theme" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="suite-container">
+
+    <!-- Sidebar Navigation -->
+    <aside class="suite-sidebar">
+      <ul class="sidebar-tabs">
+        <li class="sidebar-tab active" id="tab-doc" onclick="switchSuiteTab('doc')">
+          <i class="fa-solid fa-file-word"></i>
+          <span>Document</span>
+        </li>
+        <li class="sidebar-tab" id="tab-excel" onclick="switchSuiteTab('excel')">
+          <i class="fa-solid fa-file-excel"></i>
+          <span>Spreadsheet</span>
+        </li>
+        <li class="sidebar-tab" id="tab-ppt" onclick="switchSuiteTab('ppt')">
+          <i class="fa-solid fa-file-powerpoint"></i>
+          <span>Presentation</span>
+        </li>
+        <li class="sidebar-tab" id="tab-paint" onclick="switchSuiteTab('paint')">
+          <i class="fa-solid fa-palette"></i>
+          <span>Paint Canvas</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <span class="version-label">v1.2.0-beta</span>
+      </div>
+    </aside>
+
+    <!-- Content Workspace -->
+    <main class="suite-workspace">
+
+      <!-- ================= DOCUMENT EDITOR VIEW ================= -->
+      <section class="workspace-view active" id="view-doc">
+        <div class="doc-editor-layout">
+          <!-- Toolbar -->
+          <div class="editor-toolbar card-panel">
+            <select class="toolbar-select" id="doc-font-family" onchange="execDocCommand('fontName', this.value)">
+              <option value="Outfit">Outfit (Default)</option>
+              <option value="'Plus Jakarta Sans'">Plus Jakarta Sans</option>
+              <option value="Arial">Arial</option>
+              <option value="Georgia">Georgia</option>
+              <option value="monospace">Monospace</option>
+            </select>
+            <select class="toolbar-select" id="doc-font-size" onchange="execDocCommand('fontSize', this.value)">
+              <option value="3">12pt</option>
+              <option value="4" selected>14pt</option>
+              <option value="5">18pt</option>
+              <option value="6">24pt</option>
+              <option value="7">36pt</option>
+            </select>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('bold')" title="Bold"><i class="fa-solid fa-bold"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('strikeThrough')" title="Strikethrough"><i class="fa-solid fa-strikethrough"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyLeft')" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyCenter')" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyRight')" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyFull')" title="Justify"><i class="fa-solid fa-align-justify"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-icon-btn" onclick="insertDocTable()" title="Insert Table"><i class="fa-solid fa-table"></i></button>
+            <button class="toolbar-icon-btn" onclick="insertDocImage()" title="Insert Image Link"><i class="fa-solid fa-image"></i></button>
+            <button class="btn btn-cyan" style="margin-left: auto; padding: 0.4rem 1rem;" onclick="exportDocFile()"><i class="fa-solid fa-file-arrow-down"></i> Export DOCX</button>
+          </div>
+
+          <!-- Document page canvas -->
+          <div class="doc-canvas-wrapper">
+            <div class="doc-sheet" contenteditable="true" id="doc-editor-textarea" oninput="saveDocumentState()">
+              <h2>Meeting Notes — Anita Tech Creative Studio</h2>
+              <p>Welcome to your online editor workspace! Feel free to edit this document. You can add formatting, lists, tables, and export it directly as a document file.</p>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem;">
+                <thead>
+                  <tr style="background: rgba(139, 92, 246, 0.1);">
+                    <th style="border: 1px solid var(--border-color); padding: 8px; text-align: left;">Project Item</th>
+                    <th style="border: 1px solid var(--border-color); padding: 8px; text-align: left;">Team Assigned</th>
+                    <th style="border: 1px solid var(--border-color); padding: 8px; text-align: left;">Timeline Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Video Editor Web Interface</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Design & Eng Team</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px; color: var(--accent-emerald);">Completed</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Cloud File Storage Sync</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Security Hub</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px; color: var(--accent-cyan);">In Progress</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SPREADSHEET EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-excel">
+        <div class="excel-editor-layout">
+          <!-- Formula Bar -->
+          <div class="excel-formula-bar card-panel">
+            <div class="active-cell-address" id="excel-active-cell">A1</div>
+            <div class="formula-fx">fx</div>
+            <input type="text" class="formula-input" id="excel-formula-input" placeholder="Enter text, numbers, or formulas (e.g. =SUM(A1:A3))" oninput="handleFormulaInput(this.value)">
+            <button class="btn btn-cyan" style="padding: 0.4rem 1rem;" onclick="exportExcelFile()"><i class="fa-solid fa-file-arrow-down"></i> Export XLSX</button>
+          </div>
+
+          <!-- Excel grid table -->
+          <div class="excel-sheet-wrapper card-panel">
+            <table class="excel-grid-table">
+              <thead>
+                <tr>
+                  <th class="grid-header-corner"></th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>C</th>
+                  <th>D</th>
+                  <th>E</th>
+                  <th>F</th>
+                  <th>G</th>
+                  <th>H</th>
+                  <th>I</th>
+                  <th>J</th>
+                </tr>
+              </thead>
+              <tbody id="excel-grid-body">
+                <!-- Grid rows injected dynamically via script -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PRESENTATION EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-ppt">
+        <div class="ppt-editor-layout">
+          
+          <!-- Slide List Sidebar -->
+          <div class="ppt-slides-sidebar card-panel">
+            <h3>Slides</h3>
+            <div class="ppt-slides-list" id="ppt-slides-outline">
+              <!-- Slides outline lists dynamically -->
+            </div>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="addNewSlide()">
+              <i class="fa-solid fa-plus"></i> Add New Slide
+            </button>
+          </div>
+
+          <!-- Slide Editor Canvas -->
+          <div class="ppt-canvas-column">
+            <div class="ppt-toolbar card-panel">
+              <button class="btn btn-secondary" onclick="addPPTText()"><i class="fa-solid fa-t"></i> Add Text Box</button>
+              <button class="btn btn-secondary" onclick="changeSlideBg()"><i class="fa-solid fa-palette"></i> Background Theme</button>
+              <button class="btn btn-cyan" style="margin-left: auto;" onclick="toggleSlideShow()"><i class="fa-solid fa-play"></i> Present Slideshow</button>
+            </div>
+
+            <div class="ppt-slide-canvas-container">
+              <div class="ppt-slide-board" id="active-slide-board">
+                <!-- Injected elements representing text placeholders -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PAINT CANVAS EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-paint">
+        <div class="paint-editor-layout" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+          <!-- Paint Toolbar -->
+          <div class="paint-toolbar card-panel" style="display: flex; align-items: center; gap: 1.25rem; padding: 0.75rem 1.25rem; flex-wrap: wrap;">
+            <!-- Brush Size -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 0.85rem; color: var(--text-secondary);"><i class="fa-solid fa-paintbrush"></i> Brush Size:</span>
+              <input type="range" id="paint-brush-size" min="1" max="50" value="5" style="width: 100px; cursor: pointer;">
+              <span id="paint-brush-val" style="font-size: 0.85rem; font-weight: 700; min-width: 25px; color: var(--accent-emerald);">5px</span>
+            </div>
+            
+            <div class="toolbar-divider" style="width: 1px; height: 20px; background: var(--border-color);"></div>
+
+            <!-- Color Palette -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 0.85rem; color: var(--text-secondary);"><i class="fa-solid fa-palette"></i> Color:</span>
+              <input type="color" id="paint-color-picker" value="#10b981" style="border: none; padding: 0; background: none; width: 32px; height: 32px; cursor: pointer; border-radius: 4px;">
+            </div>
+
+            <div class="toolbar-divider" style="width: 1px; height: 20px; background: var(--border-color);"></div>
+            
+            <!-- Eraser toggle -->
+            <button class="btn btn-secondary btn-icon" id="paint-eraser" title="Eraser tool" onclick="togglePaintEraser()"><i class="fa-solid fa-eraser"></i> Eraser</button>
+            
+            <!-- Clear Canvas -->
+            <button class="btn btn-danger btn-icon" id="paint-clear" title="Clear board" onclick="clearPaintCanvas()"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+
+            <!-- Export Drawing -->
+            <button class="btn btn-cyan" style="margin-left: auto; padding: 0.4rem 1rem;" onclick="exportPaintDrawing()"><i class="fa-solid fa-file-arrow-down"></i> Export PNG</button>
+          </div>
+
+          <!-- Canvas Board Container -->
+          <div class="paint-canvas-container card-panel" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: auto; background: var(--bg-card); min-height: 400px; position: relative;">
+            <canvas id="paint-canvas" style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; cursor: crosshair; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></canvas>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- SLIDESHOW FULL SCREEN MODAL -->
+  <div class="slideshow-overlay" id="ppt-slideshow-overlay" style="display: none;">
+    <button class="slideshow-exit-btn" onclick="exitSlideShow()">&times;</button>
+    <div class="slideshow-container" id="slideshow-board">
+      <!-- Active slide rendered full size -->
+    </div>
+    <div class="slideshow-controls">
+      <button class="slideshow-arrow" onclick="navSlideShow(-1)"><i class="fa-solid fa-angle-left"></i></button>
+      <span class="slideshow-indicator" id="slideshow-idx">1 / 1</span>
+      <button class="slideshow-arrow" onclick="navSlideShow(1)"><i class="fa-solid fa-angle-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>

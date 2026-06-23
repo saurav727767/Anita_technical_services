@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Anita Tech Creative Editors Suite - Professional Video & Document Suite</title>
+  <meta name="description"
+    content="Professional client-side online editor suite featuring video editing timeline, documents word processors, spreadsheets grids, and presentations hub.">
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+
+  <!-- Header Panel -->
+  <header class="editor-header">
+    <div class="header-left">
+      <a href="/" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Services</span>
+      </a>
+      <span class="divider">|</span>
+      <div class="suite-title">
+        <i class="fa-solid fa-wand-magic-sparkles text-accent-cyan"></i>
+        <h1 class="gradient-text">Anita Tech Creative Suite</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="save-status" class="save-status text-muted">
+        <i class="fa-solid fa-cloud-arrow-up"></i> Project Saved
+      </span>
+      <button class="btn-theme" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="suite-container">
+
+    <!-- Sidebar Navigation -->
+    <aside class="suite-sidebar">
+      <ul class="sidebar-tabs">
+        <li class="sidebar-tab active" id="tab-dashboard" onclick="switchSuiteTab('dashboard')">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </li>
+        <li class="sidebar-tab" id="tab-video" onclick="switchSuiteTab('video')">
+          <i class="fa-solid fa-video"></i>
+          <span>Video Editor</span>
+        </li>
+        <li class="sidebar-tab" id="tab-doc" onclick="switchSuiteTab('doc')">
+          <i class="fa-solid fa-file-word"></i>
+          <span>Document</span>
+        </li>
+        <li class="sidebar-tab" id="tab-excel" onclick="switchSuiteTab('excel')">
+          <i class="fa-solid fa-file-excel"></i>
+          <span>Spreadsheet</span>
+        </li>
+        <li class="sidebar-tab" id="tab-ppt" onclick="switchSuiteTab('ppt')">
+          <i class="fa-solid fa-file-powerpoint"></i>
+          <span>Presentation</span>
+        </li>
+        <li class="sidebar-tab" id="tab-apk" onclick="switchSuiteTab('apk')">
+          <i class="fa-solid fa-download"></i>
+          <span>Download Suite</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <span class="version-label">v1.2.0-beta</span>
+      </div>
+    </aside>
+
+    <!-- Content Workspace -->
+    <main class="suite-workspace">
+
+      <!-- ================= DASHBOARD VIEW ================= -->
+      <section class="workspace-view active" id="view-dashboard">
+        <div class="dashboard-welcome" style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
+          <h2 class="gradient-text" style="font-size: 2.5rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fa-solid fa-house text-accent-cyan"></i> Creative Suite Dashboard</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.05rem;">Manage your documents, grids, slides, and video projects from a single workspace.</p>
+          
+          <h3 style="font-size: 1.35rem; margin-bottom: 1.5rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;"><i class="fa-solid fa-folder-open text-accent-purple" style="margin-right: 0.5rem;"></i> Recent Files</h3>
+          
+          <div class="files-grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+            <!-- ATS.docx -->
+            <div class="file-box-card card-panel" onclick="openDashboardFile('doc')" style="cursor: pointer; padding: 2rem 1.5rem; text-align: center; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: var(--transition-smooth); background: var(--bg-card);">
+              <i class="fa-solid fa-file-word" style="font-size: 3.5rem; color: #2b579a; margin-bottom: 1.25rem;"></i>
+              <h4 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.25rem;">ATS.docx</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Rich Text Document</span>
+            </div>
+            <!-- ATS.spreadsheet -->
+            <div class="file-box-card card-panel" onclick="openDashboardFile('excel')" style="cursor: pointer; padding: 2rem 1.5rem; text-align: center; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: var(--transition-smooth); background: var(--bg-card);">
+              <i class="fa-solid fa-file-excel" style="font-size: 3.5rem; color: #217346; margin-bottom: 1.25rem;"></i>
+              <h4 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.25rem;">ATS.spreadsheet</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Excel Grid Sheet</span>
+            </div>
+            <!-- ATS.presentation -->
+            <div class="file-box-card card-panel" onclick="openDashboardFile('ppt')" style="cursor: pointer; padding: 2rem 1.5rem; text-align: center; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: var(--transition-smooth); background: var(--bg-card);">
+              <i class="fa-solid fa-file-powerpoint" style="font-size: 3.5rem; color: #b7472a; margin-bottom: 1.25rem;"></i>
+              <h4 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.25rem;">ATS.presentation</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">PPT Slides Deck</span>
+            </div>
+            <!-- ATS.video -->
+            <div class="file-box-card card-panel" onclick="openDashboardFile('video')" style="cursor: pointer; padding: 2rem 1.5rem; text-align: center; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: var(--transition-smooth); background: var(--bg-card);">
+              <i class="fa-solid fa-video" style="font-size: 3.5rem; color: var(--accent-purple); margin-bottom: 1.25rem;"></i>
+              <h4 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.25rem;">ATS.video</h4>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Timeline Video Clip</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIDEO EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-video">
+        <div class="video-editor-layout">
+
+          <!-- Left Controls Column -->
+          <div class="video-panel-left card-panel">
+            <div class="panel-tabs">
+              <button class="panel-tab-btn active" onclick="switchVideoPanel('media')">
+                <i class="fa-solid fa-folder-open"></i> Media
+              </button>
+              <button class="panel-tab-btn" onclick="switchVideoPanel('text')">
+                <i class="fa-solid fa-t"></i> Text
+              </button>
+              <button class="panel-tab-btn" onclick="switchVideoPanel('filters')">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Effects
+              </button>
+              <button class="panel-tab-btn" onclick="switchVideoPanel('audio')">
+                <i class="fa-solid fa-music"></i> Audio
+              </button>
+            </div>
+
+            <!-- Panel Contents -->
+            <div class="panel-content-wrapper">
+              <!-- Media Section -->
+              <div class="panel-sub-content active" id="panel-media">
+                <div class="file-uploader" onclick="document.getElementById('video-file-input').click()">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <p>Import video, audio, or images</p>
+                  <span>Click to browse device storage</span>
+                  <input type="file" id="video-file-input" style="display: none;" multiple accept="video/*,audio/*,image/*" onchange="handleMediaImport(event)">
+                </div>
+                <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.9rem; text-transform: uppercase; color: var(--text-secondary);">Demo Assets</h4>
+                <div class="media-library" id="media-library-list">
+                  <!-- Demo Assets listed here dynamically -->
+                </div>
+              </div>
+
+              <!-- Text Section -->
+              <div class="panel-sub-content" id="panel-text">
+                <div class="text-tools">
+                  <button class="btn btn-secondary" onclick="addTimelineText('Simple Title')">
+                    <i class="fa-solid fa-plus"></i> Add Simple Text
+                  </button>
+                  <button class="btn btn-secondary" onclick="addTimelineText('🔥 Trending Sticker', true)">
+                    <i class="fa-solid fa-icons"></i> Add Animated Sticker
+                  </button>
+                  <button class="btn btn-secondary" onclick="addTimelineText('Subtitle text template')">
+                    <i class="fa-solid fa-closed-captioning"></i> Add Caption Box
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filters Section -->
+              <div class="panel-sub-content" id="panel-filters">
+                <div class="filters-grid">
+                  <div class="filter-card" onclick="applyVideoFilter('none')">
+                    <div class="filter-preview filter-none"></div>
+                    <span>No Filter</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('grayscale(1)')">
+                    <div class="filter-preview filter-grayscale"></div>
+                    <span>Cinematic B&W</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('sepia(0.8)')">
+                    <div class="filter-preview filter-sepia"></div>
+                    <span>Vintage Sepia</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('hue-rotate(90deg)')">
+                    <div class="filter-preview filter-cyber"></div>
+                    <span>Cyberpunk Neon</span>
+                  </div>
+                  <div class="filter-card" onclick="applyVideoFilter('contrast(1.5) saturate(1.5)')">
+                    <div class="filter-preview filter-pop"></div>
+                    <span>Vibrant Pop</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Audio Section -->
+              <div class="panel-sub-content" id="panel-audio">
+                <div class="audio-tools">
+                  <button class="btn btn-secondary" onclick="addBackgroundMusic('Vibrant Tech Beat', 'audio/beat1.mp3')">
+                    <i class="fa-solid fa-music"></i> Tech Background Beat
+                  </button>
+                  <button class="btn btn-secondary" onclick="addBackgroundMusic('Acoustic Relaxing Melody', 'audio/acoustic.mp3')">
+                    <i class="fa-solid fa-guitar"></i> Acoustic Background
+                  </button>
+                  <button class="btn btn-secondary" onclick="extractAudioFromActive()">
+                    <i class="fa-solid fa-scissors"></i> Extract Audio from Video
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview & Controls Column -->
+          <div class="video-panel-center card-panel">
+            <div class="preview-header">
+              <span class="badge badge-live"><i class="fa-solid fa-circle"></i> Live Preview</span>
+              <div class="project-name-container">
+                <input type="text" id="video-project-name" value="Untitled Video Project" onchange="saveVideoProjectName(this.value)">
+                <i class="fa-solid fa-pen"></i>
+              </div>
+            </div>
+            
+            <div class="video-preview-window">
+              <!-- Visual canvas renderer -->
+              <canvas id="preview-canvas"></canvas>
+              <!-- Video overlay controls -->
+              <div class="canvas-video-source">
+                <video id="source-video-element" style="display: none;" loop></video>
+                <audio id="source-audio-element" style="display: none;" loop></audio>
+              </div>
+            </div>
+
+            <div class="preview-controls">
+              <span id="video-timecode" class="timecode">00:00.00 / 00:30.00</span>
+              <div class="playback-buttons">
+                <button class="control-btn" onclick="playbackRewind()" title="Rewind to start"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="control-btn btn-play" id="btn-video-play" onclick="togglePlayback()" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+                <button class="control-btn" onclick="playbackForward()" title="Fast Forward"><i class="fa-solid fa-forward-step"></i></button>
+              </div>
+              <div class="canvas-actions">
+                <button class="btn btn-secondary btn-icon" onclick="transformPreview('crop')" title="Crop Canvas"><i class="fa-solid fa-crop-simple"></i></button>
+                <button class="btn btn-secondary btn-icon" onclick="transformPreview('rotate')" title="Rotate 90°"><i class="fa-solid fa-rotate-right"></i></button>
+                <button class="btn btn-secondary btn-icon" onclick="transformPreview('flip')" title="Mirror Flip"><i class="fa-solid fa-arrows-left-right"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Properties Column -->
+          <div class="video-panel-right card-panel">
+            <h3>Clip Properties</h3>
+            
+            <!-- Speed Control -->
+            <div class="property-group">
+              <label class="form-label"><i class="fa-solid fa-gauge-high"></i> Speed Adjustment</label>
+              <div class="speed-controls">
+                <input type="range" id="clip-speed-slider" min="0.25" max="4.0" step="0.25" value="1.0" oninput="updateClipSpeed(this.value)">
+                <span id="clip-speed-val">1.0x (Normal)</span>
+              </div>
+            </div>
+
+            <!-- Text Styling Editor -->
+            <div class="property-group" id="property-text-editor" style="display: none;">
+              <label class="form-label"><i class="fa-solid fa-font"></i> Text Content</label>
+              <input type="text" id="text-edit-content" class="form-control" oninput="updateActiveTextContent(this.value)">
+              
+              <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                  <label class="form-label">Font Size</label>
+                  <input type="number" id="text-edit-size" class="form-control" value="28" onchange="updateActiveTextSize(this.value)">
+                </div>
+                <div>
+                  <label class="form-label">Color</label>
+                  <input type="color" id="text-edit-color" class="form-control" value="#ffffff" onchange="updateActiveTextColor(this.value)">
+                </div>
+              </div>
+            </div>
+
+            <!-- Export Modal Trigger -->
+            <div class="property-group" style="margin-top: auto; padding-top: 2rem;">
+              <button class="btn btn-primary" style="width: 100%; font-size: 1rem;" onclick="openExportModal()">
+                <i class="fa-solid fa-download"></i> Export Without Watermark
+              </button>
+            </div>
+          </div>
+
+          <!-- Timeline Grid Area -->
+          <div class="video-timeline card-panel">
+            <div class="timeline-toolbar">
+              <div class="toolbar-left">
+                <button class="toolbar-btn" onclick="splitTimelineClip()" title="Split Clip at Playhead"><i class="fa-solid fa-scissors"></i> Split</button>
+                <button class="toolbar-btn text-danger" onclick="deleteTimelineClip()" title="Delete Selected Clip"><i class="fa-solid fa-trash-can"></i> Delete</button>
+              </div>
+              <div class="toolbar-right">
+                <button class="toolbar-btn" onclick="zoomTimeline(-1)" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                <button class="toolbar-btn" onclick="zoomTimeline(1)" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+              </div>
+            </div>
+
+            <!-- Timeline Tracks Wrapper -->
+            <div class="timeline-tracks-container" id="timeline-tracks-box" onmousemove="handleTimelineScrub(event)" onmousedown="startTimelineScrub(event)" onmouseup="stopTimelineScrub(event)" onmouseleave="stopTimelineScrub(event)">
+              <!-- Scrub Ruler -->
+              <div class="timeline-ruler" id="timeline-ruler-grid">
+                <!-- Numbers added dynamically -->
+              </div>
+              
+              <!-- Tracks list -->
+              <div class="timeline-tracks">
+                <!-- Text track -->
+                <div class="timeline-track-row" data-track="text">
+                  <div class="track-label"><i class="fa-solid fa-t"></i> Text</div>
+                  <div class="track-content" id="track-text-clips">
+                    <!-- Text blocks here -->
+                  </div>
+                </div>
+
+                <!-- Video track -->
+                <div class="timeline-track-row" data-track="video">
+                  <div class="track-label"><i class="fa-solid fa-video"></i> Video</div>
+                  <div class="track-content" id="track-video-clips">
+                    <!-- Video blocks here -->
+                  </div>
+                </div>
+
+                <!-- Audio track -->
+                <div class="timeline-track-row" data-track="audio">
+                  <div class="track-label"><i class="fa-solid fa-music"></i> Audio</div>
+                  <div class="track-content" id="track-audio-clips">
+                    <!-- Audio blocks here -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Playhead Line -->
+              <div class="timeline-playhead" id="timeline-playhead-pointer"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= DOCUMENT EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-doc">
+        <div class="doc-editor-layout">
+          <!-- Toolbar -->
+          <div class="editor-toolbar card-panel">
+            <select class="toolbar-select" id="doc-font-family" onchange="execDocCommand('fontName', this.value)">
+              <option value="Outfit">Outfit (Default)</option>
+              <option value="'Plus Jakarta Sans'">Plus Jakarta Sans</option>
+              <option value="Arial">Arial</option>
+              <option value="Georgia">Georgia</option>
+              <option value="monospace">Monospace</option>
+            </select>
+            <select class="toolbar-select" id="doc-font-size" onchange="execDocCommand('fontSize', this.value)">
+              <option value="3">12pt</option>
+              <option value="4" selected>14pt</option>
+              <option value="5">18pt</option>
+              <option value="6">24pt</option>
+              <option value="7">36pt</option>
+            </select>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('bold')" title="Bold"><i class="fa-solid fa-bold"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('strikeThrough')" title="Strikethrough"><i class="fa-solid fa-strikethrough"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyLeft')" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyCenter')" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyRight')" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+            <button class="toolbar-icon-btn" onclick="execDocCommand('justifyFull')" title="Justify"><i class="fa-solid fa-align-justify"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-icon-btn" onclick="insertDocTable()" title="Insert Table"><i class="fa-solid fa-table"></i></button>
+            <button class="toolbar-icon-btn" onclick="insertDocImage()" title="Insert Image Link"><i class="fa-solid fa-image"></i></button>
+            <button class="btn btn-cyan" style="margin-left: auto; padding: 0.4rem 1rem;" onclick="exportDocFile()"><i class="fa-solid fa-file-arrow-down"></i> Export DOCX</button>
+          </div>
+
+          <!-- Document page canvas -->
+          <div class="doc-canvas-wrapper">
+            <div class="doc-sheet" contenteditable="true" id="doc-editor-textarea" oninput="saveDocumentState()">
+              <h2>Meeting Notes — Anita Tech Creative Studio</h2>
+              <p>Welcome to your online editor workspace! Feel free to edit this document. You can add formatting, lists, tables, and export it directly as a document file.</p>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem;">
+                <thead>
+                  <tr style="background: rgba(139, 92, 246, 0.1);">
+                    <th style="border: 1px solid var(--border-color); padding: 8px; text-align: left;">Project Item</th>
+                    <th style="border: 1px solid var(--border-color); padding: 8px; text-align: left;">Team Assigned</th>
+                    <th style="border: 1px solid var(--border-color); padding: 8px; text-align: left;">Timeline Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Video Editor Web Interface</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Design & Eng Team</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px; color: var(--accent-emerald);">Completed</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Cloud File Storage Sync</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px;">Security Hub</td>
+                    <td style="border: 1px solid var(--border-color); padding: 8px; color: var(--accent-cyan);">In Progress</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SPREADSHEET EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-excel">
+        <div class="excel-editor-layout">
+          <!-- Formula Bar -->
+          <div class="excel-formula-bar card-panel">
+            <div class="active-cell-address" id="excel-active-cell">A1</div>
+            <div class="formula-fx">fx</div>
+            <input type="text" class="formula-input" id="excel-formula-input" placeholder="Enter text, numbers, or formulas (e.g. =SUM(A1:A3))" oninput="handleFormulaInput(this.value)">
+            <button class="btn btn-cyan" style="padding: 0.4rem 1rem;" onclick="exportExcelFile()"><i class="fa-solid fa-file-arrow-down"></i> Export XLSX</button>
+          </div>
+
+          <!-- Excel grid table -->
+          <div class="excel-sheet-wrapper card-panel">
+            <table class="excel-grid-table">
+              <thead>
+                <tr>
+                  <th class="grid-header-corner"></th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>C</th>
+                  <th>D</th>
+                  <th>E</th>
+                  <th>F</th>
+                  <th>G</th>
+                  <th>H</th>
+                  <th>I</th>
+                  <th>J</th>
+                </tr>
+              </thead>
+              <tbody id="excel-grid-body">
+                <!-- Grid rows injected dynamically via script -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PRESENTATION EDITOR VIEW ================= -->
+      <section class="workspace-view" id="view-ppt">
+        <div class="ppt-editor-layout">
+          
+          <!-- Slide List Sidebar -->
+          <div class="ppt-slides-sidebar card-panel">
+            <h3>Slides</h3>
+            <div class="ppt-slides-list" id="ppt-slides-outline">
+              <!-- Slides outline lists dynamically -->
+            </div>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="addNewSlide()">
+              <i class="fa-solid fa-plus"></i> Add New Slide
+            </button>
+          </div>
+
+          <!-- Slide Editor Canvas -->
+          <div class="ppt-canvas-column">
+            <div class="ppt-toolbar card-panel">
+              <button class="btn btn-secondary" onclick="addPPTText()"><i class="fa-solid fa-t"></i> Add Text Box</button>
+              <button class="btn btn-secondary" onclick="changeSlideBg()"><i class="fa-solid fa-palette"></i> Background Theme</button>
+              <button class="btn btn-cyan" style="margin-left: auto;" onclick="toggleSlideShow()"><i class="fa-solid fa-play"></i> Present Slideshow</button>
+            </div>
+
+            <div class="ppt-slide-canvas-container">
+              <div class="ppt-slide-board" id="active-slide-board">
+                <!-- Injected elements representing text placeholders -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= APK DOWNLOAD VIEW ================= -->
+      <section class="workspace-view" id="view-apk">
+        <div class="apk-download-layout">
+          
+          <div class="apk-card card-panel">
+            <div class="apk-icon-header">
+              <div class="apk-logo-bubble" style="background: var(--accent-purple-gradient); box-shadow: var(--glow-purple);">
+                <i class="fa-solid fa-download" style="color: #fff;"></i>
+                <span class="android-badge" style="background: var(--accent-cyan); border-color: var(--bg-card);"><i class="fa-solid fa-laptop-code" style="color:#fff;"></i></span>
+              </div>
+              <div class="apk-metadata">
+                <h2>ATS Video Editor</h2>
+                <span class="version-badge">v1.2.0 (Stable Release)</span>
+                <p>Compile professional videos offline on Android and Windows PCs with hardware accelerated rendering.</p>
+              </div>
+            </div>
+
+            <div class="apk-specs-grid">
+              <div class="spec-card">
+                <span>Windows Setup</span>
+                <h4>65.0 MB</h4>
+              </div>
+              <div class="spec-card">
+                <span>Android APK</span>
+                <h4>35.0 MB</h4>
+              </div>
+              <div class="spec-card">
+                <span>Downloads</span>
+                <h4>38,200+</h4>
+              </div>
+              <div class="spec-card">
+                <span>Watermark</span>
+                <h4>None (Free)</h4>
+              </div>
+            </div>
+
+            <div class="apk-download-actions" id="ats-editor-download-selector" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+              <button class="btn btn-cyan" style="font-size: 0.9rem; padding: 0.75rem;" onclick="startSuiteDownloadSim('exe')">
+                <i class="fa-brands fa-windows"></i> Download EXE for Windows
+              </button>
+              <button class="btn btn-primary" style="font-size: 0.9rem; padding: 0.75rem;" onclick="startSuiteDownloadSim('apk')">
+                <i class="fa-brands fa-android"></i> Download Android APK
+              </button>
+            </div>
+            <p class="download-caption" id="ats-editor-download-caption" style="text-align: center; margin-top: 0.75rem;">Verified safe package downloads. SHA-256 Checksums secured.</p>
+
+            <!-- Download Progress Overlay (hidden by default) -->
+            <div class="download-progress-bar-container" id="ats-editor-download-progress-block" style="display: none; flex-direction: column; gap: 0.4rem; align-items: center; margin-top: 1.5rem;">
+              <div class="progress-bar-bg" style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; position: relative;">
+                <div class="progress-bar-fill emerald" id="ats-editor-download-progress-fill" style="width: 0%; height: 100%; border-radius: 10px; background: var(--accent-emerald-gradient); transition: width 0.1s linear;"></div>
+              </div>
+              <span id="ats-editor-download-percentage" style="font-size: 0.8rem; font-weight: 700; color: var(--accent-emerald);">Downloading: 0% (0 / 0 MB)</span>
+            </div>
+          </div>
+
+          <!-- Feature Listing -->
+          <div class="apk-features card-panel">
+            <h3>Premium Video Editor Features</h3>
+            <ul class="feature-checklist">
+              <li><i class="fa-solid fa-circle-check text-accent-cyan"></i> Native Multi-track editing timeline (optimised for touch interactions).</li>
+              <li><i class="fa-solid fa-circle-check text-accent-cyan"></i> Instant high-speed video rendering leveraging device GPU.</li>
+              <li><i class="fa-solid fa-circle-check text-accent-cyan"></i> Crop, rotate, trim, split, and audio extraction capabilities.</li>
+              <li><i class="fa-solid fa-circle-check text-accent-cyan"></i> Google Drive backup integration for auto-saving & restoring workspace.</li>
+              <li><i class="fa-solid fa-circle-check text-accent-cyan"></i> Crash recovery system to protect ongoing edits.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- EXPORT VIDEO PROCESS MODAL -->
+  <div class="modal-overlay" id="export-video-modal" style="display: none;">
+    <div class="export-modal-container">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-film text-accent-cyan"></i> Render & Export Video</h3>
+        <button class="modal-close-btn" onclick="closeExportModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="export-settings-view">
+        <div class="form-group">
+          <label class="form-label">Export Resolution Quality</label>
+          <select id="export-resolution" class="form-control">
+            <option value="1080p" selected>Full HD 1080p (Fastest Web Render)</option>
+            <option value="720p">Standard HD 720p (Compressed File Size)</option>
+            <option value="480p">SD 480p (Mobile Draft View)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Video Format</label>
+          <select id="export-format" class="form-control">
+            <option value="mp4" selected>MP4 (Highly Compatible)</option>
+            <option value="webm">WebM (Optimized for HTML5 Web)</option>
+          </select>
+        </div>
+        <button class="btn btn-cyan" style="width: 100%; margin-top: 1.5rem;" onclick="startVideoRendering()"><i class="fa-solid fa-play"></i> Start Rendering Video</button>
+      </div>
+
+      <!-- Render Progress status -->
+      <div class="modal-body" id="export-rendering-view" style="display: none;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <i class="fa-solid fa-spinner fa-spin" style="font-size: 3rem; color: var(--accent-cyan); margin-bottom: 1rem;"></i>
+          <h4 id="render-status-heading">Encoding frames...</h4>
+          <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.25rem;">Applying speed controls, filter kernels, overlay texts, and mixing soundtracks.</p>
+        </div>
+        <div class="progress-bar-bg" style="margin-bottom: 0.5rem;">
+          <div class="progress-bar-fill cyan" id="render-progress-fill" style="width: 0%;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary);">
+          <span id="render-progress-text">Progress: 0%</span>
+          <span id="render-time-left">Estimated: 5 seconds left</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDESHOW FULL SCREEN MODAL -->
+  <div class="slideshow-overlay" id="ppt-slideshow-overlay" style="display: none;">
+    <button class="slideshow-exit-btn" onclick="exitSlideShow()">&times;</button>
+    <div class="slideshow-container" id="slideshow-board">
+      <!-- Active slide rendered full size -->
+    </div>
+    <div class="slideshow-controls">
+      <button class="slideshow-arrow" onclick="navSlideShow(-1)"><i class="fa-solid fa-angle-left"></i></button>
+      <span class="slideshow-indicator" id="slideshow-idx">1 / 1</span>
+      <button class="slideshow-arrow" onclick="navSlideShow(1)"><i class="fa-solid fa-angle-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Anita Technical Services - Web, App & Software Development Solutions</title>
+  <meta name="description"
+    content="Secure, state-of-the-art web, app, and enterprise software development services by Anita Technical Services. Build your next digital project with modern technology.">
+  <meta name="keywords"
+    content="web development, mobile apps, custom software, OTP login, secure applications, tech solutions">
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome Icons for modern aesthetic -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Header Section -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo-link" id="nav-brand">
+        <img class="logo-img" src="image/logo.png" alt="Anita Technical Services Logo">
+        <span class="logo-text gradient-text">Anita Tech</span>
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-item active" id="nav-home" onclick="showView('landing-view')">Home</li>
+        <li class="nav-item" id="nav-services" onclick="scrollToSection('services')">Services</li>
+        <li class="nav-item" id="nav-contact" onclick="scrollToSection('contact')">Contact</li>
+        <li class="nav-item" id="nav-sec-hub" onclick="openSecurityHub()"><i class="fa-solid fa-shield-halved"></i>
+          Security Hub</li>
+        <li>
+          <button class="btn btn-primary" id="btn-portal" onclick="showView('auth-view')">
+            <i class="fa-solid fa-right-to-bracket"></i> Portal
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- LANDING PAGE VIEW -->
+  <main class="app-view active-view" id="landing-view">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Building <span class="gradient-text">Secure & Innovative</span> Digital Solutions</h1>
+        <p>We design and develop premium websites, high-performance mobile apps, and enterprise-grade software solutions
+          tailored specifically to fuel your company's growth.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showView('auth-view')">Get Started</button>
+          <button class="btn btn-secondary" onclick="scrollToSection('services')">Our Services</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-canvas">
+          <div class="visual-element">
+            <i class="fa-solid fa-code"
+              style="font-size: 3.5rem; color: var(--accent-purple); margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 0.5rem;">Secure Development</h3>
+            <span style="font-size: 0.85rem; color: var(--text-secondary); text-align: center;">End-to-end Encryption &
+              OTP Protection</span>
+            <div class="tech-icon-container">
+              <span class="tech-bubble"><i class="fa-brands fa-react" style="color: #61dafb;"></i></span>
+              <span class="tech-bubble"><i class="fa-brands fa-node-js" style="color: #68a063;"></i></span>
+              <span class="tech-bubble"><i class="fa-solid fa-database" style="color: #336791;"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section" id="services">
+      <div class="section-header">
+        <h2>What We Deliver</h2>
+        <p>Custom-built solutions engineered for performance, security, and scalability.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Web Development -->
+        <div class="service-card" id="service-web">
+          <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>Website Development</h3>
+          <p>Stunning, modern, responsive websites with dynamic integrations, SEO optimization, and secure frontend
+            architectures.</p>
+        </div>
+        <!-- App Development -->
+        <div class="service-card" id="service-app">
+          <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3>Mobile App Development</h3>
+          <p>Native and cross-platform (React Native/Flutter) mobile apps built to give users a premium, high-speed UX.
+          </p>
+        </div>
+        <!-- Enterprise Software -->
+        <div class="service-card" id="service-software">
+          <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
+          <h3>Custom Software</h3>
+          <p>Robust enterprise softwares, CRM systems, and backend infrastructures designed to streamline complex
+            business logic.</p>
+        </div>
+        <!-- Cyber Security & Audit -->
+        <div class="service-card" id="service-sec">
+          <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Security & Integrations</h3>
+          <p>Implementation of custom OTP login flows, multi-factor authentication, database encryption, and API
+            security audits.</p>
+        </div>
+        <!-- Engineering Study -->
+        <div class="service-card" id="service-engineering" onclick="showView('engineering-study-view')"
+          style="cursor: pointer;">
+          <div class="service-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+          <h3>Engineering Study</h3>
+          <p>Scientific modeling and custom engineering analysis tools, featuring our real-time Scientific Calculator
+            engine.</p>
+        </div>
+        <!-- Entertainment Hub -->
+        <div class="service-card" id="service-entertainment" onclick="showView('entertainment-view')"
+          style="cursor: pointer;">
+          <div class="service-icon"><i class="fa-solid fa-gamepad"></i></div>
+          <h3>Entertainment Hub</h3>
+          <p>Stress-buster games and interactive media modules compiled to offer downtime and team relaxation.</p>
+        </div>
+        <!-- Gramin Saathi Portal -->
+        <div class="service-card" id="service-graminsaathi" onclick="showView('gramin-saathi-view')"
+          style="cursor: pointer;">
+          <div class="service-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h3>Gramin Saathi</h3>
+          <p>Unified digital companion empowering rural communities with local Mandi prices, welfare scheme checkers,
+            and weather guides.</p>
+          <div
+            style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600;">
+            <i class="fa-solid fa-circle-nodes"></i> Integrated local portal
+          </div>
+        </div>
+
+        <!-- Creative Editors Suite -->
+        <div class="service-card" id="service-editors" onclick="window.open('/editor/hub.html', '_blank')"
+          style="cursor: pointer;">
+          <div class="service-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan);"><i class="fa-solid fa-photo-film"></i></div>
+          <h3>Creative Editors Suite</h3>
+          <p>Professional online workspace featuring a multi-track Video Editor, rich Document editor, Spreadsheets (Excel), and Slides (PPT).</p>
+          <div
+            style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--accent-cyan); font-weight: 600;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> 100% Online & Free
+          </div>
+        </div>
+
+        <!-- Download ATS Tools — Combined Card -->
+        <div class="service-card" id="service-ats-downloads" onclick="window.location.href='/downloads.html'"
+          style="cursor: pointer;">
+          <div class="service-icon" style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(139,92,246,0.15)); color: var(--accent-emerald);">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+          </div>
+          <h3>Download ATS Tools</h3>
+          <p>Download offline standalone packages — ATS Office Suite (Word, Sheet, Slides, Paint) and ATS Video Editor. Available for Android and Windows.</p>
+          <div style="margin-top: 1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: var(--accent-emerald); font-weight: 700;">
+              <i class="fa-solid fa-briefcase"></i> ATS Office
+            </span>
+            <span style="color: rgba(255,255,255,0.2); font-size: 0.8rem;">|</span>
+            <span style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: var(--accent-purple); font-weight: 700;">
+              <i class="fa-solid fa-film"></i> ATS Video Editor
+            </span>
+            <span style="color: rgba(255,255,255,0.2); font-size: 0.8rem;">|</span>
+            <span style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: var(--text-secondary); font-weight: 600;">
+              <i class="fa-brands fa-android"></i> Android &nbsp;•&nbsp; <i class="fa-brands fa-windows"></i> Windows
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Quote Form -->
+    <section class="contact-section" id="contact">
+      <div class="contact-info">
+        <h3>Connect With Our Experts</h3>
+        <p>Ready to start your technical journey? Contact us for custom queries, project consultations, or cost
+          estimates.</p>
+
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="info-details">
+            <h4>Email Us</h4>
+            <p><a href="mailto:support.anitatechnical@gmail.com"
+                style="color: inherit; text-decoration: none;">support.anitatechnical@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="info-details">
+            <h4>Office Location</h4>
+            <p><a href="https://maps.app.goo.gl/KejuSkmatqmv9RJR6" target="_blank"
+                style="color: inherit; text-decoration: none;">Mowarakpur, Bihar, India <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  style="font-size: 0.75rem; margin-left: 0.25rem; opacity: 0.7;"></i></a></p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-details">
+            <h4>Call Support</h4>
+            <p><a href="tel:+917277676906" style="color: inherit; text-decoration: none;">+91 72776 76906</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <form id="landing-contact-form" onsubmit="handleContactSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" class="form-control" placeholder="name@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-service">Required Service</label>
+            <select id="contact-service" class="form-control" required>
+              <option value="">Select a service</option>
+              <option value="web">Website Development</option>
+              <option value="app">Mobile Application</option>
+              <option value="software">Custom Software Solution</option>
+              <option value="security">Security Integrations</option>
+              <option value="graminsaathi">Gramin Saathi Portal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-msg">Message / Details</label>
+            <textarea id="contact-msg" class="form-control" placeholder="Describe your project requirement..."
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ENGINEERING STUDY VIEW (HUB) -->
+  <div class="app-view" id="engineering-study-view">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+      <button class="btn btn-secondary" onclick="showView('landing-view')" style="margin-bottom: 2rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Services
+      </button>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 3rem;">
+        <h2 class="gradient-text" style="font-size: 2.75rem;"><i class="fa-solid fa-compass-drafting"></i> Engineering
+          Study Hub</h2>
+        <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Access scientific computing tools, engineering
+          calculations, and references in one unified portal.</p>
+      </div>
+
+      <div class="services-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <!-- Scientific Calculator Tool -->
+        <div class="service-card" style="border-color: rgba(139, 92, 246, 0.3); background: rgba(17, 22, 39, 0.9);">
+          <div class="service-icon" style="background: var(--accent-purple-gradient); color: #fff;"><i
+              class="fa-solid fa-calculator"></i></div>
+          <h3>Scientific Calculator</h3>
+          <p style="margin-bottom: 1.5rem;">C++ calculation engine with real-time degree/radian modes, trig, logarithms,
+            and factorial functions.</p>
+          <button class="btn btn-primary" onclick="openCalculatorModal()" style="width: 100%;">
+            <i class="fa-solid fa-play"></i> Launch Tool
+          </button>
+        </div>
+
+        <!-- Future Tool: Unit Converter -->
+        <div class="service-card" style="opacity: 0.6; cursor: not-allowed;">
+          <div class="service-icon" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);"><i
+              class="fa-solid fa-shuffle"></i></div>
+          <span
+            style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.6rem; border-radius: 50px; display: inline-block; margin-bottom: 0.75rem;">COMING
+            SOON</span>
+          <h3>Unit Converter</h3>
+          <p>Convert metrics across mechanical engineering, thermodynamics, fluids, electrical circuits, and dimensions.
+          </p>
+        </div>
+
+        <!-- Future Tool: Formula Sheet -->
+        <div class="service-card" style="opacity: 0.6; cursor: not-allowed;">
+          <div class="service-icon" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);"><i
+              class="fa-solid fa-book-open"></i></div>
+          <span
+            style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.6rem; border-radius: 50px; display: inline-block; margin-bottom: 0.75rem;">COMING
+            SOON</span>
+          <h3>Formula Reference</h3>
+          <p>Quick lookup guide for calculus, physics dynamics, mechanics of solids, electric fields, and thermodynamics
+            formulas.</p>
+        </div>
+
+        <!-- Future Tool: CAD Viewer -->
+        <div class="service-card" style="opacity: 0.6; cursor: not-allowed;">
+          <div class="service-icon" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);"><i
+              class="fa-solid fa-cubes"></i></div>
+          <span
+            style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.6rem; border-radius: 50px; display: inline-block; margin-bottom: 0.75rem;">COMING
+            SOON</span>
+          <h3>CAD Viewer & Editor</h3>
+          <p>Interactive 3D rendering engine to upload, rotate, view, and inspect engineering drawings and solid models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTERTAINMENT VIEW (HUB) -->
+  <div class="app-view" id="entertainment-view">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+      <button class="btn btn-secondary" onclick="showView('landing-view')" style="margin-bottom: 2rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Services
+      </button>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 3rem;">
+        <h2 class="gradient-text" style="font-size: 2.75rem;"><i class="fa-solid fa-gamepad"></i> Entertainment Hub</h2>
+        <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Interactive games, stress-busters, and multimedia
+          options developed to take a short break during work hours.</p>
+      </div>
+
+      <div class="services-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <!-- Games Arcade card -->
+        <div class="service-card" style="border-color: rgba(6, 182, 212, 0.3); background: rgba(17, 22, 39, 0.9);">
+          <div class="service-icon" style="background: var(--accent-cyan-gradient); color: #fff;"><i
+              class="fa-solid fa-ghost"></i></div>
+          <h3>Games Arcade</h3>
+          <p style="margin-bottom: 1.5rem;">Access short, engaging games designed for browser play. Challenge yourself
+            or practice reflexes.</p>
+          <button class="btn btn-cyan" onclick="showView('games-view')" style="width: 100%;">
+            <i class="fa-solid fa-play"></i> Open Arcade
+          </button>
+        </div>
+
+        <!-- Cricket Live Scores card -->
+        <div class="service-card" style="border-color: rgba(139, 92, 246, 0.3); background: rgba(17, 22, 39, 0.9);">
+          <div class="service-icon" style="background: var(--accent-purple-gradient); color: #fff;"><i
+              class="fa-solid fa-baseball-bat-ball"></i></div>
+          <h3>Cricket Live Scores</h3>
+          <p style="margin-bottom: 1.5rem;">View live cricket match scores, commentaries, and summaries in real-time.
+            Refreshes automatically.</p>
+          <button class="btn btn-primary" onclick="showView('cricket-score-view')" style="width: 100%;">
+            <i class="fa-solid fa-trophy"></i> Open Live Scores
+          </button>
+        </div>
+
+        <div class="service-card" style="opacity: 0.6; cursor: not-allowed;">
+          <div class="service-icon" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);"><i
+              class="fa-solid fa-palette"></i></div>
+          <span
+            style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.6rem; border-radius: 50px; display: inline-block; margin-bottom: 0.75rem;">COMING
+            SOON</span>
+          <h3>Sketch Canvas</h3>
+          <p>Quick whiteboard sketch tool to draw, doodle, outline wireframes, and download simple graphic notes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAMES ARCHIVE VIEW -->
+  <div class="app-view" id="games-view">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+      <button class="btn btn-secondary" onclick="showView('entertainment-view')" style="margin-bottom: 2rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Entertainment Hub
+      </button>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 2.5rem;">
+        <h2 class="gradient-text" style="font-size: 2.75rem;"><i class="fa-solid fa-ghost"></i> Games Arcade</h2>
+        <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Enjoy local stress-relief games. Play a match of
+          Tic-Tac-Toe against the AI.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 1rem;">
+        <!-- Game Console Card -->
+        <div class="card-panel"
+          style="background: rgba(17, 22, 39, 0.85); border: 1px solid var(--border-color); box-shadow: var(--glow-purple);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1.5rem; margin: 0; color: var(--text-primary);"><i class="fa-solid fa-gamepad"
+                style="color: var(--accent-purple);"></i> Tic-Tac-Toe</h3>
+            <select id="ttt-mode-select" onchange="changeTTTMode(this.value)"
+              style="background: rgba(8, 10, 16, 0.6); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.4rem 0.8rem; border-radius: 6px; font-family: var(--font-body); font-size: 0.85rem; cursor: pointer;">
+              <option value="ai">Player vs AI (Comp)</option>
+              <option value="pvp">Player vs Player</option>
+            </select>
+          </div>
+
+          <!-- TTT Board -->
+          <div class="ttt-board"
+            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; aspect-ratio: 1; margin: 0 auto; max-width: 320px;">
+            <button class="ttt-cell" onclick="handleTTTCellClick(0)" data-index="0"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(1)" data-index="1"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(2)" data-index="2"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(3)" data-index="3"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(4)" data-index="4"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(5)" data-index="5"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(6)" data-index="6"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(7)" data-index="7"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+            <button class="ttt-cell" onclick="handleTTTCellClick(8)" data-index="8"
+              style="aspect-ratio: 1; background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); border-radius: 12px; font-size: 2.5rem; font-weight: 800; cursor: pointer; transition: var(--transition-smooth); outline: none;"></button>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+            <div id="ttt-status-text" style="font-weight: 600; font-size: 0.95rem; color: var(--text-primary);"><i
+                class="fa-solid fa-star" style="color: #f59e0b;"></i> Start playing!</div>
+            <button class="btn btn-secondary" onclick="resetTTTGame()"
+              style="padding: 0.4rem 1rem; font-size: 0.8rem;"><i class="fa-solid fa-arrow-rotate-right"></i> Restart
+              Match</button>
+          </div>
+        </div>
+
+        <!-- Score & Instructions Card -->
+        <div class="card-panel" style="background: rgba(17, 22, 39, 0.7); border: 1px solid var(--border-color);">
+          <h3
+            style="font-size: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+            Arcade Scoreboard</h3>
+
+          <div
+            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; margin-bottom: 2rem;">
+            <div
+              style="background: rgba(8, 10, 16, 0.5); padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Player
+                (X)</span>
+              <h4 id="ttt-score-player" style="font-size: 1.75rem; margin-top: 0.25rem; color: var(--accent-cyan);">0
+              </h4>
+            </div>
+            <div
+              style="background: rgba(8, 10, 16, 0.5); padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Ties</span>
+              <h4 id="ttt-score-ties" style="font-size: 1.75rem; margin-top: 0.25rem; color: var(--text-muted);">0</h4>
+            </div>
+            <div
+              style="background: rgba(8, 10, 16, 0.5); padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;"
+                id="ttt-score-opp-label">AI (O)</span>
+              <h4 id="ttt-score-opponent" style="font-size: 1.75rem; margin-top: 0.25rem; color: var(--accent-pink);">0
+              </h4>
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Instructions</h3>
+          <ul
+            style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>Select your game mode from the dropdown menu (Default is **vs AI**).</li>
+            <li>Take turns placing **X** inside the empty boxes.</li>
+            <li>The first player to align 3 symbols in a row, column, or diagonal wins!</li>
+            <li>In vs AI mode, the computer plays as **O** automatically.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRICKET LIVE SCORES VIEW -->
+  <div class="app-view" id="cricket-score-view">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+      <button class="btn btn-secondary" onclick="showView('entertainment-view')" style="margin-bottom: 2rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Entertainment Hub
+      </button>
+
+      <div class="section-header"
+        style="text-align: left; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+        <div>
+          <h2 class="gradient-text" style="font-size: 2.75rem;"><i class="fa-solid fa-baseball-bat-ball"></i> Cricket
+            Live Scores</h2>
+          <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Real-time cricket matches coverage, updates,
+            and scores powered by Cricbuzz.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span id="cricket-last-updated" style="font-size: 0.85rem; color: var(--text-muted);">Last updated:
+            Never</span>
+          <button class="btn btn-secondary" onclick="toggleCricketSettings()"
+            style="padding: 0.5rem 1.25rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;"
+            title="API Settings">
+            <i class="fa-solid fa-gear"></i> API Key Settings
+          </button>
+          <button class="btn btn-secondary" id="cricket-refresh-btn" onclick="fetchCricketScores()"
+            style="padding: 0.5rem 1.25rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <i class="fa-solid fa-sync" id="cricket-refresh-icon"></i> Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- Settings Panel -->
+      <div class="card-panel" id="cricket-settings-panel"
+        style="background: rgba(17, 22, 39, 0.85); border: 1px solid var(--border-color); padding: 1.5rem; margin-bottom: 2.5rem; display: none;">
+        <h3
+          style="font-size: 1.25rem; margin: 0 0 0.5rem 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-key" style="color: var(--accent-purple);"></i> Cricbuzz Multi-API Key Manager
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0 0 1.5rem 0; line-height: 1.4;">
+          Manage multiple fallback API keys (RapidAPI and AllThingsDev). If the active key hits rate limits (429), the
+          app automatically rotates to the next available key.
+        </p>
+
+        <!-- Keys List Table -->
+        <div class="cricket-table-wrapper" style="margin-bottom: 1.5rem; max-height: 200px; overflow-y: auto;">
+          <table class="cricket-table" style="font-size: 0.85rem;">
+            <thead>
+              <tr>
+                <th>Label / Provider</th>
+                <th>API Key</th>
+                <th>Host</th>
+                <th style="text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="cricket-keys-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Add New Key Form -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+          <h4
+            style="font-size: 1.05rem; margin-bottom: 1rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-plus"></i> Add New Fallback Key
+          </h4>
+
+          <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 600;"
+                for="cricket-provider-select">Provider</label>
+              <select id="cricket-provider-select" class="form-control" style="background: rgba(8, 10, 16, 0.4);"
+                onchange="handleCricketProviderChange(this.value)">
+                <option value="rapidapi">RapidAPI (cricbuzz-cricket)</option>
+                <option value="allthingsdev">AllThingsDev (Cricbuzz Official)</option>
+              </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 600;" for="cricket-key-input">API Key
+                (x-rapidapi-key / x-apihub-key)</label>
+              <input type="text" id="cricket-key-input" class="form-control" style="background: rgba(8, 10, 16, 0.4);"
+                placeholder="Paste API Key here...">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 600;" for="cricket-label-input">Label /
+                Name</label>
+              <input type="text" id="cricket-label-input" class="form-control" style="background: rgba(8, 10, 16, 0.4);"
+                placeholder="e.g. My Backup Key">
+            </div>
+          </div>
+
+          <!-- Advanced Fields (Collapsible or visible) -->
+          <div id="cricket-adv-fields"
+            style="display: none; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 600;"
+                for="cricket-host-input">x-apihub-host</label>
+              <input type="text" id="cricket-host-input" class="form-control" style="background: rgba(8, 10, 16, 0.4);"
+                value="Cricbuzz-Official-Cricket-API.allthingsdev.co">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 600;"
+                for="cricket-endpoint-input">x-apihub-endpoint</label>
+              <input type="text" id="cricket-endpoint-input" class="form-control"
+                style="background: rgba(8, 10, 16, 0.4);" value="95df5edd-bd8b-4881-a12b-1a40e519b693">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+            <button class="btn btn-primary" onclick="addNewCricketKey()" style="padding: 0.6rem 1.5rem;"><i
+                class="fa-solid fa-plus"></i> Add Key to Rotation</button>
+            <button class="btn btn-secondary" onclick="restoreDefaultKeys()" style="padding: 0.6rem 1.5rem;"><i
+                class="fa-solid fa-trash-arrow-up"></i> Restore Defaults</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="card-panel"
+        style="background: rgba(17, 22, 39, 0.6); border: 1px solid var(--border-color); padding: 1.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px; position: relative;">
+          <i class="fa-solid fa-magnifying-glass"
+            style="position: absolute; left: 1rem; top: 1rem; color: var(--text-muted); line-height: 1.2rem;"></i>
+          <input type="text" id="cricket-search" oninput="handleCricketSearch(this.value)" class="form-control"
+            style="padding-left: 2.75rem; background: rgba(8, 10, 16, 0.4);" placeholder="Search by team or series...">
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span style="font-size: 0.9rem; color: var(--text-secondary);">Status:</span>
+          <select id="cricket-status-filter" onchange="handleCricketFilter(this.value)"
+            style="background: rgba(8, 10, 16, 0.6); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem; cursor: pointer; outline: none; font-family: var(--font-body);">
+            <option value="all">All Matches</option>
+            <option value="live">Live / In Progress</option>
+            <option value="complete">Completed</option>
+            <option value="preview">Upcoming / Preview</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Matches Container -->
+      <div id="cricket-matches-list" class="cricket-score-container">
+        <!-- Dynamically populated -->
+        <div style="text-align: center; padding: 4rem; color: var(--text-muted);">
+          <i class="fa-solid fa-spinner fa-spin"
+            style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-purple);"></i>
+          <p>Connecting to Cricbuzz network...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAMIN SAATHI VIEW -->
+  <div class="app-view" id="gramin-saathi-view">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+      <button class="btn btn-secondary" onclick="showView('landing-view')" style="margin-bottom: 2rem;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Services
+      </button>
+
+      <div class="section-header"
+        style="text-align: left; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+        <div>
+          <h2 class="gradient-text" style="font-size: 2.75rem;"><i class="fa-solid fa-people-roof"
+              style="color: var(--accent-emerald);"></i> Gramin Saathi</h2>
+          <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Your digital rural companion. Empowering
+            villages with Mandi price trackers, scheme eligibility checks, and crop advisories.</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <button class="btn btn-secondary" onclick="openGraminSaathi()"
+            style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-up-right-from-square"></i> Open Standalone
+          </button>
+          <span
+            style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.15); padding: 0.4rem 0.8rem; border-radius: 8px;">
+            <i class="fa-solid fa-circle-nodes" style="color: var(--accent-emerald);"></i> Panchayat Digital Node
+            Enabled
+          </span>
+        </div>
+      </div>
+
+      <!-- Live Cloud Portal Iframe Embed -->
+      <div class="gs-iframe-wrapper">
+        <!-- Loading Spinner overlay -->
+        <div id="gs-iframe-loader">
+          <i class="fa-solid fa-spinner fa-spin"
+            style="font-size: 3rem; color: var(--accent-emerald); margin-bottom: 1rem;"></i>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Connecting to
+            https://gramin-saathi.vercel.app/...</p>
+        </div>
+        <iframe id="gs-portal-iframe" src="" allow="geolocation; microphone; camera"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRICKET MATCH DETAILS DIALOG / MODAL -->
+  <div class="modal-overlay" id="cricket-match-modal">
+    <div class="cricket-modal-container">
+      <div class="modal-header">
+        <h3 class="gradient-text" id="cricket-modal-title"
+          style="display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+          <i class="fa-solid fa-trophy"></i> Match Details
+        </h3>
+        <button class="modal-close-btn" onclick="closeCricketMatchModal()" title="Close">&times;</button>
+      </div>
+
+      <div class="modal-body"
+        style="padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; min-height: 0; flex: 1;">
+
+        <!-- Summary Panel -->
+        <div id="cricket-modal-summary" class="card-panel"
+          style="background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); padding: 1.25rem;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Detail Tabs -->
+        <div class="sec-tabs"
+          style="margin-bottom: 0; display: flex; border-bottom: 1px solid var(--border-color); width: 100%;">
+          <button class="sec-tab-btn active-sec-tab" id="cricket-tab-scorecard"
+            onclick="switchCricketDetailTab('scorecard')"
+            style="flex: 1; text-align: center; font-family: var(--font-heading); font-weight: 600; cursor: pointer;">Scorecard</button>
+          <button class="sec-tab-btn" id="cricket-tab-commentary" onclick="switchCricketDetailTab('commentary')"
+            style="flex: 1; text-align: center; font-family: var(--font-heading); font-weight: 600; cursor: pointer;">Commentary</button>
+          <button class="sec-tab-btn" id="cricket-tab-info" onclick="switchCricketDetailTab('info')"
+            style="flex: 1; text-align: center; font-family: var(--font-heading); font-weight: 600; cursor: pointer;">Match
+            Info</button>
+        </div>
+
+        <!-- Tab Content Panes -->
+        <div class="cricket-modal-panes-wrapper" style="flex: 1; min-height: 0;">
+
+          <!-- Pane 1: Scorecard -->
+          <div class="sec-pane active-pane" id="cricket-pane-scorecard">
+            <!-- Innings sub-tabs -->
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem;" id="cricket-innings-tabs-container">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div id="cricket-scorecard-tables" style="display: flex; flex-direction: column; gap: 2rem;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Pane 2: Commentary -->
+          <div class="sec-pane" id="cricket-pane-commentary">
+            <div class="commentary-timeline" id="cricket-commentary-timeline"
+              style="max-height: 350px; overflow-y: auto; padding-right: 0.5rem; display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Pane 3: Match Info -->
+          <div class="sec-pane" id="cricket-pane-info">
+            <div id="cricket-info-details" style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION VIEW -->
+  <div class="app-view" id="auth-view">
+    <div class="auth-view">
+      <div class="auth-container">
+
+        <div class="auth-tabs">
+          <div class="auth-tab active-tab" id="tab-user" onclick="switchAuthTab('user')">User Login</div>
+          <div class="auth-tab" id="tab-admin" onclick="switchAuthTab('admin')">Admin Login</div>
+        </div>
+
+        <div class="auth-form-wrapper">
+          <!-- Step 1: User Request OTP -->
+          <div class="auth-step active-step" id="user-step-request">
+            <h2>Client Login</h2>
+            <p class="auth-subtitle">Verify your identity via OTP to access your projects.</p>
+
+            <!-- Lockout Alert message -->
+            <div class="lockout-alert" id="user-lockout-alert">
+              <i class="fa-solid fa-triangle-exclamation"></i> Too many failed attempts! Account temporarily locked. Try
+              again in <span id="lockout-timer-sec">30</span>s.
+            </div>
+
+            <form onsubmit="handleRequestOTP(event)">
+              <div class="form-group">
+                <label class="form-label" for="user-login-id">Email or Phone Number</label>
+                <div style="position: relative;">
+                  <i class="fa-solid fa-user"
+                    style="position: absolute; left: 1rem; top: 1rem; color: var(--text-muted);"></i>
+                  <input type="text" id="user-login-id" class="form-control" style="padding-left: 2.75rem;"
+                    placeholder="Enter email or 10-digit number" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                Get OTP Code
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 2: User Verify OTP -->
+          <div class="auth-step" id="user-step-verify">
+            <h2>Enter OTP Code</h2>
+            <p class="auth-subtitle">We sent a verification code to <span id="user-sent-target"
+                style="font-weight: 600; color: var(--text-primary);"></span></p>
+
+            <div class="lockout-alert" id="user-verify-lockout-alert">
+              <i class="fa-solid fa-triangle-exclamation"></i> System locked. Wait before submitting codes.
+            </div>
+
+            <form onsubmit="handleVerifyOTP(event)">
+              <div class="otp-input-container" id="otp-digits-wrapper">
+                <input type="text" maxlength="1" class="otp-digit" required data-index="0">
+                <input type="text" maxlength="1" class="otp-digit" required data-index="1">
+                <input type="text" maxlength="1" class="otp-digit" required data-index="2">
+                <input type="text" maxlength="1" class="otp-digit" required data-index="3">
+                <input type="text" maxlength="1" class="otp-digit" required data-index="4">
+                <input type="text" maxlength="1" class="otp-digit" required data-index="5">
+              </div>
+
+              <button type="submit" class="btn btn-cyan" style="width: 100%;">Verify & Sign In</button>
+
+              <div class="otp-timer-text">
+                Code expires in: <span class="otp-timer-countdown" id="otp-timer-val">02:00</span>
+              </div>
+              <div class="otp-timer-text" style="margin-top: 0.5rem;">
+                Didn't receive it? <span class="otp-resend-link disabled" id="otp-resend-btn"
+                  onclick="resendOTP()">Resend OTP</span>
+              </div>
+
+              <button type="button" class="btn btn-secondary" style="width: 100%; margin-top: 1.5rem;"
+                onclick="goBackToAuthRequest()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+            </form>
+          </div>
+
+          <!-- Admin Login Form -->
+          <div class="auth-step" id="admin-step-login">
+            <h2>Admin Area</h2>
+            <p class="auth-subtitle">Log in using manager credentials.</p>
+
+            <form onsubmit="handleAdminLogin(event)">
+              <div class="form-group">
+                <label class="form-label" for="admin-email">Username</label>
+                <div style="position: relative;">
+                  <i class="fa-solid fa-lock"
+                    style="position: absolute; left: 1rem; top: 1rem; color: var(--text-muted);"></i>
+                  <input type="text" id="admin-username" class="form-control" style="padding-left: 2.75rem;"
+                    placeholder="admin" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="admin-password">Password</label>
+                <div style="position: relative;">
+                  <i class="fa-solid fa-key"
+                    style="position: absolute; left: 1rem; top: 1rem; color: var(--text-muted);"></i>
+                  <input type="password" id="admin-password" class="form-control" style="padding-left: 2.75rem;"
+                    placeholder="••••••••" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                Authorize Login
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- USER DASHBOARD VIEW -->
+  <div class="app-view" id="user-dashboard-view">
+    <div class="dashboard-wrapper">
+
+      <!-- User Sidebar -->
+      <aside class="dashboard-sidebar">
+        <div class="user-profile-summary">
+          <div class="profile-avatar" id="user-avatar-tag">U</div>
+          <div class="profile-info">
+            <h4 id="user-profile-title">Client Account</h4>
+            <span id="user-profile-sub">client@example.com</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li class="sidebar-item active-item" id="user-menu-projects" onclick="switchDashboardTab('user', 'projects')">
+            <i class="fa-solid fa-folder-open"></i> Projects
+          </li>
+          <li class="sidebar-item" id="user-menu-tickets" onclick="switchDashboardTab('user', 'tickets')">
+            <i class="fa-solid fa-circle-question"></i> Help Tickets
+          </li>
+        </ul>
+
+        <div class="sidebar-logout">
+          <div class="sidebar-item" onclick="logoutUser()">
+            <i class="fa-solid fa-power-off"></i> Logout
+          </div>
+        </div>
+      </aside>
+
+      <!-- User Main Panel Content -->
+      <div class="dashboard-main">
+
+        <!-- Header area -->
+        <div class="dashboard-header-panel">
+          <div>
+            <h2>Welcome Back!</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Track your project progress and file support
+              queries here.</p>
+          </div>
+          <div class="btn btn-secondary" onclick="openSecurityHub()"><i class="fa-solid fa-shield-halved"></i> Audit
+            Security Settings</div>
+        </div>
+
+        <!-- Tab Content 1: Projects -->
+        <div class="dashboard-tab-content" id="user-pane-projects">
+          <!-- Overview Cards -->
+          <div class="stats-grid" style="margin-bottom: 2rem;">
+            <div class="stat-card">
+              <div class="stat-icon purple"><i class="fa-solid fa-diagram-project"></i></div>
+              <div class="stat-details">
+                <span>Total Services</span>
+                <h3 id="user-stat-total-projects">2</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon cyan"><i class="fa-solid fa-spinner"></i></div>
+              <div class="stat-details">
+                <span>Active Status</span>
+                <h3 id="user-stat-active-projects">1</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon emerald"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="stat-details">
+                <span>Completed Tasks</span>
+                <h3 id="user-stat-completed-projects">1</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projects List -->
+          <div class="card-panel">
+            <div class="panel-header">
+              <h3>Anita Tech Active Solutions</h3>
+            </div>
+            <div class="project-progress-container" id="user-projects-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content 2: Tickets -->
+        <div class="dashboard-tab-content" id="user-pane-tickets" style="display: none;">
+          <div class="ticket-row">
+
+            <!-- File a new ticket -->
+            <div class="card-panel">
+              <h3>Submit Support Ticket</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Need to request a
+                feature, report a bug, or inquire about invoices?</p>
+
+              <form id="user-ticket-form" onsubmit="handleCreateTicket(event)">
+                <div class="form-group">
+                  <label class="form-label" for="ticket-subject">Subject</label>
+                  <input type="text" id="ticket-subject" class="form-control" placeholder="e.g. Design update required"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ticket-desc">Detailed Query</label>
+                  <textarea id="ticket-desc" class="form-control"
+                    placeholder="Please describe what support is needed..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Ticket</button>
+              </form>
+            </div>
+
+            <!-- List of tickets -->
+            <div class="card-panel">
+              <h3>Ticket Log & Status</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Click ticket to see
+                resolution detail.</p>
+
+              <div class="ticket-list" id="user-tickets-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD VIEW -->
+  <div class="app-view" id="admin-dashboard-view">
+    <div class="dashboard-wrapper">
+
+      <!-- Admin Sidebar -->
+      <aside class="dashboard-sidebar">
+        <div class="user-profile-summary">
+          <div class="profile-avatar" style="background: var(--accent-cyan-gradient);">A</div>
+          <div class="profile-info">
+            <h4>Manager Portal</h4>
+            <span style="color: var(--accent-cyan);">SuperAdmin</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li class="sidebar-item active-item" id="admin-menu-projects"
+            onclick="switchDashboardTab('admin', 'projects')">
+            <i class="fa-solid fa-list-check"></i> Project Tracking
+          </li>
+          <li class="sidebar-item" id="admin-menu-tickets" onclick="switchDashboardTab('admin', 'tickets')">
+            <i class="fa-solid fa-headset"></i> Support Tickets
+          </li>
+          <li class="sidebar-item" id="admin-menu-logs" onclick="switchDashboardTab('admin', 'logs')">
+            <i class="fa-solid fa-shield-halved"></i> Security logs
+          </li>
+        </ul>
+
+        <div class="sidebar-logout">
+          <div class="sidebar-item" onclick="logoutAdmin()">
+            <i class="fa-solid fa-power-off"></i> Logout
+          </div>
+        </div>
+      </aside>
+
+      <!-- Admin Main Panel Content -->
+      <div class="dashboard-main">
+
+        <!-- Header -->
+        <div class="dashboard-header-panel">
+          <div>
+            <h2>Admin Dashboard</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Manage company clients, services, updates, and
+              verify auth audit logs.</p>
+          </div>
+          <div class="btn btn-cyan" onclick="openSecurityHub()"><i class="fa-solid fa-gears"></i> Dev Config</div>
+        </div>
+
+        <!-- Panel 1: Project Tracking -->
+        <div class="dashboard-tab-content" id="admin-pane-projects">
+
+          <div class="stats-grid" style="margin-bottom: 2rem;">
+            <div class="stat-card">
+              <div class="stat-icon purple"><i class="fa-solid fa-users"></i></div>
+              <div class="stat-details">
+                <span>Active Clients</span>
+                <h3 id="admin-stat-clients">1</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon cyan"><i class="fa-solid fa-diagram-project"></i></div>
+              <div class="stat-details">
+                <span>Total Projects</span>
+                <h3 id="admin-stat-total-projects">2</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon emerald"><i class="fa-solid fa-envelope-open-text"></i></div>
+              <div class="stat-details">
+                <span>Pending Tickets</span>
+                <h3 id="admin-stat-pending-tickets">0</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="ticket-row">
+            <!-- Project Update Form -->
+            <div class="card-panel">
+              <h3>Modify Project Status</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Select an existing
+                project to modify progress details.</p>
+
+              <form id="admin-project-form" onsubmit="handleUpdateProject(event)">
+                <div class="form-group">
+                  <label class="form-label" for="admin-select-proj">Select Project</label>
+                  <select id="admin-select-proj" class="form-control" required
+                    onchange="populateProjectProgressValue()">
+                    <!-- Populated dynamically -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-proj-progress">Progress Percentage (0-100)</label>
+                  <input type="number" id="admin-proj-progress" class="form-control" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-proj-status">Status Tag</label>
+                  <select id="admin-proj-status" class="form-control" required>
+                    <option value="pending">Pending</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-cyan" style="width: 100%;">Save Changes</button>
+              </form>
+            </div>
+
+            <!-- List of current projects -->
+            <div class="card-panel">
+              <h3>Current Project Dashboard</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Real-time clients list
+                status tracker overview.</p>
+              <div class="project-progress-container" id="admin-projects-list">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Panel 2: Tickets Resolver -->
+        <div class="dashboard-tab-content" id="admin-pane-tickets" style="display: none;">
+          <div class="ticket-row">
+
+            <!-- Ticket Reply Form -->
+            <div class="card-panel">
+              <h3>Resolve Help Ticket</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Select a client's
+                query to resolve it.</p>
+
+              <form id="admin-reply-form" onsubmit="handleResolveTicket(event)">
+                <div class="form-group">
+                  <label class="form-label" for="admin-select-ticket">Active Ticket</label>
+                  <select id="admin-select-ticket" class="form-control" required onchange="populateTicketDetail()">
+                    <option value="">No pending tickets</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Client Query Details</label>
+                  <div id="admin-ticket-query-text"
+                    style="background: rgba(8, 10, 16, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); min-height: 80px;">
+                    Select a ticket to review query...
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-reply-msg">Resolution Reply</label>
+                  <textarea id="admin-reply-msg" class="form-control" placeholder="Write your response message..."
+                    required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Resolution</button>
+              </form>
+            </div>
+
+            <!-- List of customer tickets -->
+            <div class="card-panel">
+              <h3>All Client Ticket Logs</h3>
+              <div class="ticket-list" id="admin-tickets-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Panel 3: Audit log console -->
+        <div class="dashboard-tab-content" id="admin-pane-logs" style="display: none;">
+          <div class="card-panel">
+            <div class="panel-header">
+              <h3>Security & Verification Audit Logs</h3>
+              <button class="btn btn-secondary" onclick="clearLogs()"><i class="fa-solid fa-trash-can"></i> Clear
+                Terminal</button>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+              Logs security events such as OTP generation, failed attempts, lockouts, block states, and authorized
+              dashboard loads.
+            </p>
+            <div class="log-console" id="admin-logs-console">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- Brand & Socials -->
+      <div class="footer-brand">
+        <h3 class="gradient-text">Anita Tech</h3>
+        <p>A premium security-driven development company empowering businesses with custom web applications, mobile
+          tools, and software solutions.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showView('landing-view')">Home</a></li>
+          <li><a href="#" onclick="scrollToSection('services')">Services</a></li>
+          <li><a href="#" onclick="scrollToSection('contact')">Contact Us</a></li>
+          <li><a href="#" onclick="openSecurityHub()">Security Hub</a></li>
+          <li><a href="#" onclick="showView('auth-view')">Client Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Our Offerings -->
+      <div class="footer-links-col">
+        <h4>Our Offerings</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="scrollToSection('services')">Website Development</a></li>
+          <li><a href="#" onclick="scrollToSection('services')">Mobile Application</a></li>
+          <li><a href="#" onclick="scrollToSection('services')">Custom Software</a></li>
+          <li><a href="#" onclick="openSecurityHub()">Security Integration</a></li>
+          <li><a href="#" onclick="showView('engineering-study-view')">Engineering Study</a></li>
+          <li><a href="#" onclick="showView('entertainment-view')">Entertainment Hub</a></li>
+        </ul>
+      </div>
+
+      <!-- Developer Hub -->
+      <div class="footer-links-col">
+        <h4>Developer Hub</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openCalculatorModal()">Scientific Calculator</a></li>
+          <li><a href="#" onclick="showView('games-view')">Games Arcade</a></li>
+          <li><a href="#" onclick="openSecurityHub()">OTP Architecture</a></li>
+          <li><a href="#" onclick="openSecurityHub()">Database Design</a></li>
+          <li><a href="#" onclick="openSecurityHub()">NodeJS API Specs</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact Info & Map Row -->
+    <div class="footer-middle">
+      <div class="footer-contact-info">
+        <h4>Contact Information</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Mowarakpur, Bihar, India</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:support.anitatechnical@gmail.com">support.anitatechnical@gmail.com</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+917277676906">+91 72776 76906</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-map-container">
+        <h4>Our Location</h4>
+        <div class="footer-map-card">
+          <div class="footer-map-overlay-btn">
+            <a href="https://maps.app.goo.gl/KejuSkmatqmv9RJR6" target="_blank" class="btn btn-primary"
+              style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.25rem;">
+              Open In Maps <i class="fa-solid fa-up-right-from-square" style="font-size: 0.65rem;"></i>
+            </a>
+          </div>
+          <iframe src="https://maps.google.com/maps?q=25.328637,85.580346&z=15&output=embed" width="100%" height="180"
+            style="border:0; border-radius: 12px; display: block;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom line -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Anita Technical Services. All rights reserved. | MSME Registered Company</p>
+    </div>
+  </footer>
+
+  <!-- SECURITY ARCHITECTURE DIALOG / HUB -->
+  <div class="modal-overlay" id="security-hub-modal">
+    <div class="security-modal-container">
+      <div class="modal-header">
+        <h3 class="gradient-text"><i class="fa-solid fa-shield-halved"></i> OTP Security Architecture</h3>
+        <button class="modal-close-btn" onclick="closeSecurityHub()">&times;</button>
+      </div>
+
+      <div class="sec-tabs">
+        <button class="sec-tab-btn active-sec-tab" id="sec-tab-flow" onclick="switchSecTab('flow')">Verification
+          Flow</button>
+        <button class="sec-tab-btn" id="sec-tab-db" onclick="switchSecTab('db')">Database Design</button>
+        <button class="sec-tab-btn" id="sec-tab-code" onclick="switchSecTab('code')">NodeJS Implementation</button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Tab 1: Flow chart & description -->
+        <div class="sec-pane active-pane" id="sec-pane-flow">
+          <h3>Secure OTP Login Sequence</h3>
+          <p>This flow details how OTP-based authentication works securely in our system, preventing brute-force and
+            credential stealing:</p>
+
+          <div
+            style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--accent-cyan); font-weight: bold;">Step 1:
+              User Request</p>
+            <p style="font-size: 0.85rem; margin-bottom: 1rem;">User submits email/phone. The backend checks if the
+              account is rate-limited. If clean, it generates a cryptographically secure 6-digit code.</p>
+
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--accent-cyan); font-weight: bold;">Step 2:
+              Delivery & Storage</p>
+            <p style="font-size: 0.85rem; margin-bottom: 1rem;">Code is hashed (e.g., using SHA256 or bcrypt) and saved
+              in temporary database with an expiry timestamp (typically 2-5 minutes). The raw code is dispatched to user
+              via SMS API (like Twilio) or Email API (like SendGrid).</p>
+
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--accent-cyan); font-weight: bold;">Step 3:
+              Verification & Lockout</p>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">User enters code. Backend compares hash. If correct, user
+              receives a Session JWT. If incorrect, attempt count increments. After 3 failures, login is blocked for
+              30s-10m to block automated bots.</p>
+          </div>
+
+          <div class="security-tip-alert">
+            <h4><i class="fa-solid fa-lightbulb"></i> Security Tip</h4>
+            <p>Never return the generated OTP code in the frontend response body. OTPs should only exist inside the
+              delivery channel (SMS/Email) and as a hash inside the backend cache database.</p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Database Design -->
+        <div class="sec-pane" id="sec-pane-db">
+          <h3>OTP Table Schema (SQL Example)</h3>
+          <p>For high performance and clean validation, OTP verification should utilize a separate table or a memory
+            cache (like Redis) with automatic record TTL (Time-To-Live).</p>
+
+          <pre class="code-block"><code class="code-snippet">CREATE TABLE otp_verifications (
+  id VARCHAR(36) PRIMARY KEY,
+  client_id VARCHAR(50) NOT NULL,
+  otp_hash VARCHAR(255) NOT NULL, -- Stored securely hashed
+  attempts INT DEFAULT 0,         -- Counter for rate limiting
+  expires_at TIMESTAMP NOT NULL,  -- Verification Window Expiry
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+          <p>For production cache delivery (e.g., Redis):</p>
+          <pre class="code-block"><code class="code-snippet">// Store OTP hash with 120 seconds expiry time
+await redis.set(`otp:${clientId}`, otpHash, 'EX', 120);</code></pre>
+        </div>
+
+        <!-- Tab 3: Code Implementation -->
+        <div class="sec-pane" id="sec-pane-code">
+          <h3>Backend verification controller (NodeJS / Express)</h3>
+          <p>Here is an exemplary Express JS controller showing secure hashing, rate-limiting, and verification
+            validation:</p>
+
+          <pre class="code-block"><code class="code-snippet">const crypto = require('crypto');
+const bcrypt = require('bcrypt');
+
+// Generate and Save OTP
+app.post('/api/auth/request-otp', async (req, res) => {
+  const { contact } = req.body;
+  
+  // Rate-limiting check...
+  const recentAttempts = await getAttemptsCount(contact);
+  if (recentAttempts >= 3) {
+    return res.status(429).json({ error: "Lockout active. Try later." });
+  }
+
+  // Cryptographically secure 6-digit code
+  const code = Math.floor(100000 + crypto.randomInt(900000)).toString();
+  const otpHash = await bcrypt.hash(code, 10);
+  
+  await saveOTPSession({
+    contact,
+    hash: otpHash,
+    expiresAt: Date.now() + 2 * 60 * 1000 // 2 minutes
+  });
+
+  // Dispatched code to SMS API (Simulated in response for development only)
+  await smsGateway.send(contact, `Your OTP is: ${code}`);
+  return res.json({ message: "OTP Sent Successfully." });
+});</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCIENTIFIC CALCULATOR DIALOG / MODAL -->
+  <div class="modal-overlay" id="calculator-modal">
+    <div class="calculator-modal-container">
+      <div class="modal-header">
+        <h3 class="gradient-text" style="display: flex; align-items: center; gap: 0.5rem; margin: 0;"><i
+            class="fa-solid fa-arrows-alt" style="color: var(--text-muted); font-size: 0.85rem;"></i> <i
+            class="fa-solid fa-calculator"></i> C++ Scientific Calculator</h3>
+        <div class="modal-header-actions" style="display: flex; gap: 0.75rem; align-items: center;">
+          <button class="modal-popout-btn" onclick="popoutCalculator()" title="Pop Out"
+            style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 0.95rem; transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center;"><i
+              class="fa-solid fa-up-right-from-square"></i></button>
+          <button class="modal-close-btn" onclick="closeCalculatorModal()" title="Close">&times;</button>
+        </div>
+      </div>
+
+      <div class="modal-body calc-modal-body">
+        <!-- Calculator Display -->
+        <div class="calc-display-wrapper">
+          <div class="calc-expression" id="calc-expr-display">&nbsp;</div>
+          <div class="calc-screen" id="calc-screen-display">0</div>
+        </div>
+
+        <!-- Mode Switcher (Deg/Rad) & Power Toggle -->
+        <div class="calc-modes" style="display: flex; align-items: center; gap: 0.5rem; width: 100%;">
+          <button class="calc-mode-btn active-mode" id="calc-mode-deg" onclick="setCalculatorMode('deg')">DEG</button>
+          <button class="calc-mode-btn" id="calc-mode-rad" onclick="setCalculatorMode('rad')">RAD</button>
+          <button class="calc-mode-btn" id="calc-power-btn" onclick="toggleCalculatorPower()"
+            style="margin-left: auto; background: rgba(239, 68, 68, 0.1); color: var(--accent-pink); border-color: rgba(239, 68, 68, 0.2);"><i
+              class="fa-solid fa-power-off"></i> OFF</button>
+        </div>
+
+        <!-- Calculator Pad -->
+        <div class="calc-grid">
+          <!-- Scientific Functions (Row 1) -->
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('sin')">sin</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('cos')">cos</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('tan')">tan</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('sqrt')">√</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('fact')">n!</button>
+
+          <!-- Scientific Functions (Row 2) -->
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('asin')">asin</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('acos')">acos</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('atan')">atan</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('log')">log</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('ln')">ln</button>
+
+          <!-- Row 3 -->
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('sinh')">sinh</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('cosh')">cosh</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('tanh')">tanh</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcVal('^')">^</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('exp')">exp</button>
+
+          <!-- Row 4 -->
+          <button class="btn-calc btn-scientific" onclick="inputCalcVal('pi')">π</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcVal('e')">e</button>
+          <button class="btn-calc btn-secondary" onclick="inputCalcVal('(')">(</button>
+          <button class="btn-calc btn-secondary" onclick="inputCalcVal(')')">)</button>
+          <button class="btn-calc btn-danger" onclick="clearCalculator()">C</button>
+
+          <!-- Row 5 (Digits and Operators) -->
+          <button class="btn-calc" onclick="inputCalcVal('7')">7</button>
+          <button class="btn-calc" onclick="inputCalcVal('8')">8</button>
+          <button class="btn-calc" onclick="inputCalcVal('9')">9</button>
+          <button class="btn-calc btn-operator" onclick="inputCalcVal('/')">/</button>
+          <button class="btn-calc btn-warning" onclick="backspaceCalculator()"><i
+              class="fa-solid fa-backspace"></i></button>
+
+          <!-- Row 6 -->
+          <button class="btn-calc" onclick="inputCalcVal('4')">4</button>
+          <button class="btn-calc" onclick="inputCalcVal('5')">5</button>
+          <button class="btn-calc" onclick="inputCalcVal('6')">6</button>
+          <button class="btn-calc btn-operator" onclick="inputCalcVal('*')">*</button>
+          <button class="btn-calc btn-scientific" onclick="inputCalcFunc('abs')">abs</button>
+
+          <!-- Row 7 -->
+          <button class="btn-calc" onclick="inputCalcVal('1')">1</button>
+          <button class="btn-calc" onclick="inputCalcVal('2')">2</button>
+          <button class="btn-calc" onclick="inputCalcVal('3')">3</button>
+          <button class="btn-calc btn-operator" onclick="inputCalcVal('-')">-</button>
+          <button class="btn-calc btn-primary calc-equals" onclick="evaluateCalculator()">=</button>
+
+          <!-- Row 8 -->
+          <button class="btn-calc calc-zero" onclick="inputCalcVal('0')">0</button>
+          <button class="btn-calc" onclick="inputCalcVal('.')">.</button>
+          <button class="btn-calc btn-operator" onclick="inputCalcVal('+')">+</button>
+        </div>
+
+        <!-- C++ Server status indicator -->
+        <div class="calc-status" id="calc-status-text">
+          <i class="fa-solid fa-circle-check" style="color: var(--accent-emerald);"></i> Powered by C++ calculation
+          backend.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ATS OFFICE SUITE DOWNLOAD MODAL -->
+  <div class="modal-overlay" id="ats-download-modal" style="display: none;">
+    <div class="cricket-modal-container" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="gradient-text" id="ats-modal-header-title" style="display: flex; align-items: center; gap: 0.5rem; margin: 0; background: var(--accent-purple-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          <i class="fa-solid fa-cloud-arrow-down" style="color: var(--accent-purple);"></i> Download ATS Office Suite
+        </h3>
+        <button class="modal-close-btn" onclick="closeATSDownloadModal()" title="Close">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;" id="ats-download-selector">
+        <p id="ats-modal-desc" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+          Get the standalone offline editors suite for your PC or Mobile devices. Includes Video Editor, Word, Spreadsheet, and Slides.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <!-- Windows Download -->
+          <div class="service-card" style="margin: 0; padding: 1.5rem; text-align: center; border-color: rgba(6, 182, 212, 0.25); background: rgba(8, 10, 16, 0.4); cursor: pointer;" onclick="startATSDownloadSim('exe')">
+            <i class="fa-brands fa-windows" style="font-size: 2.5rem; color: var(--accent-cyan); margin-bottom: 0.5rem; display: block;"></i>
+            <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Windows PC</h4>
+            <span id="ats-modal-windows-filename" style="font-size: 0.75rem; color: var(--text-muted); display: block;">ATS_Office_Setup.exe</span>
+            <div id="ats-modal-windows-size" style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); margin-top: 0.5rem;">112 MB</div>
+          </div>
+          <!-- Android Download -->
+          <div class="service-card" style="margin: 0; padding: 1.5rem; text-align: center; border-color: rgba(16, 185, 129, 0.25); background: rgba(8, 10, 16, 0.4); cursor: pointer;" onclick="startATSDownloadSim('apk')">
+            <i class="fa-brands fa-android" style="font-size: 2.5rem; color: var(--accent-emerald); margin-bottom: 0.5rem; display: block;"></i>
+            <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Mobile / Tablet</h4>
+            <span id="ats-modal-android-filename" style="font-size: 0.75rem; color: var(--text-muted); display: block;">ATS_Office_Suite.apk</span>
+            <div id="ats-modal-android-size" style="font-size: 0.75rem; font-weight: 700; color: var(--accent-emerald); margin-top: 0.5rem;">38 MB</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live progress bars -->
+      <div class="modal-body" style="padding: 1.5rem; display: none;" id="ats-download-progress-container">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <i class="fa-solid fa-circle-down fa-bounce" style="font-size: 3rem; color: var(--accent-purple); margin-bottom: 1rem; display: inline-block;"></i>
+          <h4 id="ats-download-title" style="margin-bottom: 0.5rem;">Downloading Installer package...</h4>
+          <p class="text-muted" style="font-size: 0.8rem;" id="ats-download-status">Securing mirror handshake...</p>
+        </div>
+        <div class="progress-bar-bg" style="margin-bottom: 0.5rem; background: rgba(255, 255, 255, 0.05); height: 8px; border-radius: 10px; overflow: hidden; position: relative;">
+          <div class="progress-bar-fill purple" id="ats-download-progress-bar" style="width: 0%; height: 100%; border-radius: 10px; background: var(--accent-purple-gradient); transition: width 0.1s linear;"></div>
+        </div>
+        <div style="display: flex; justify-content: justify; font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
+          <span id="ats-download-pct">Progress: 0%</span>
+          <span id="ats-download-size">0 / 0 MB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript logic file -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
