@@ -677,8 +677,8 @@ function handleMediaImport(e) {
   formData.append('media', file);
   
   const backendBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:5000'
-    : ''; // Dynamically resolves to same domain in production
+    ? 'http://localhost:3000'
+    : (window.location.origin.includes('netlify.app') ? 'https://ats-unified-backend.onrender.com' : window.location.origin);
   
   fetch(`${backendBase}/api/video/upload`, {
     method: 'POST',
@@ -758,8 +758,8 @@ function startVideoRendering() {
   const statusHeading = document.getElementById('render-status-heading');
   
   const backendBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:5000'
-    : '';
+    ? 'http://localhost:3000'
+    : (window.location.origin.includes('netlify.app') ? 'https://ats-unified-backend.onrender.com' : window.location.origin);
 
   // Get active video clips from timeline
   const payload = {
