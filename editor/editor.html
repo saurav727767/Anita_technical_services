@@ -420,21 +420,12 @@
           </div>
 
           <!-- Excel grid table -->
-          <div class="excel-sheet-wrapper card-panel">
+          <div class="excel-sheet-wrapper card-panel" id="excel-sheet-scroll-container" style="overflow: auto; max-height: calc(100vh - 200px);">
             <table class="excel-grid-table">
               <thead>
-                <tr>
+                <tr id="excel-grid-header-row">
                   <th class="grid-header-corner"></th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>E</th>
-                  <th>F</th>
-                  <th>G</th>
-                  <th>H</th>
-                  <th>I</th>
-                  <th>J</th>
+                  <!-- Column headers dynamically populated -->
                 </tr>
               </thead>
               <tbody id="excel-grid-body">

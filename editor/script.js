@@ -905,43 +905,109 @@ function exportDocFile() {
 // ==========================================
 // SPREADSHEET EDITOR ACTIONS
 // ==========================================
-function initExcelGrid() {
+let excelRowCount = 40;
+let excelColCount = 15;
+
+function getExcelColumnLabel(index) {
+  let label = '';
+  let temp = index;
+  while (temp >= 0) {
+    label = String.fromCharCode((temp % 26) + 65) + label;
+    temp = Math.floor(temp / 26) - 1;
+  }
+  return label;
+}
+
+function renderExcelHeaders() {
+  const headerRow = document.getElementById('excel-grid-header-row');
+  if (!headerRow) return;
+  headerRow.innerHTML = '<th class="grid-header-corner"></th>';
+  for (let c = 0; c < excelColCount; c++) {
+    const th = document.createElement('th');
+    th.innerText = getExcelColumnLabel(c);
+    headerRow.appendChild(th);
+  }
+}
+
+function addExcelRow(r) {
   const body = document.getElementById('excel-grid-body');
+  if (!body) return;
+
+  const rowEl = document.createElement('tr');
+  
+  const indexCell = document.createElement('td');
+  indexCell.className = 'row-index-header';
+  indexCell.innerText = r;
+  rowEl.appendChild(indexCell);
+  
+  for (let c = 0; c < excelColCount; c++) {
+    const colChar = getExcelColumnLabel(c);
+    const cellId = `${colChar}${r}`;
+    
+    const cellTd = document.createElement('td');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'excel-cell-input';
+    input.id = `excel-cell-${cellId}`;
+    input.setAttribute('data-cell-id', cellId);
+    
+    input.addEventListener('focus', () => handleCellFocus(cellId));
+    input.addEventListener('blur', () => handleCellBlur(cellId));
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') input.blur();
+    });
+    
+    cellTd.appendChild(input);
+    rowEl.appendChild(cellTd);
+  }
+  
+  body.appendChild(rowEl);
+}
+
+function addExcelColumn() {
+  excelColCount++;
+  renderExcelHeaders();
+  
+  const body = document.getElementById('excel-grid-body');
+  if (!body) return;
+  
+  const rows = body.querySelectorAll('tr');
+  rows.forEach((rowEl, index) => {
+    const r = index + 1;
+    const colChar = getExcelColumnLabel(excelColCount - 1);
+    const cellId = `${colChar}${r}`;
+    
+    const cellTd = document.createElement('td');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'excel-cell-input';
+    input.id = `excel-cell-${cellId}`;
+    input.setAttribute('data-cell-id', cellId);
+    
+    input.addEventListener('focus', () => handleCellFocus(cellId));
+    input.addEventListener('blur', () => handleCellBlur(cellId));
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') input.blur();
+    });
+    
+    cellTd.appendChild(input);
+    rowEl.appendChild(cellTd);
+  });
+}
+
+function initExcelGrid() {
+  excelRowCount = 40;
+  excelColCount = 15;
+  
+  const body = document.getElementById('excel-grid-body');
+  if (!body) return;
   body.innerHTML = '';
   
-  // Create 20 rows
-  for (let r = 1; r <= 20; r++) {
-    const rowEl = document.createElement('tr');
-    
-    // Header Column
-    const indexCell = document.createElement('td');
-    indexCell.className = 'row-index-header';
-    indexCell.innerText = r;
-    rowEl.appendChild(indexCell);
-    
-    // Columns A-J
-    for (let c = 0; c < 10; c++) {
-      const colChar = String.fromCharCode(65 + c);
-      const cellId = `${colChar}${r}`;
-      
-      const cellTd = document.createElement('td');
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.className = 'excel-cell-input';
-      input.id = `excel-cell-${cellId}`;
-      input.setAttribute('data-cell-id', cellId);
-      
-      input.addEventListener('focus', () => handleCellFocus(cellId));
-      input.addEventListener('blur', () => handleCellBlur(cellId));
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') input.blur();
-      });
-      
-      cellTd.appendChild(input);
-      rowEl.appendChild(cellTd);
-    }
-    
-    body.appendChild(rowEl);
+  renderExcelHeaders();
+  
+  // Render initial rows
+  for (let r = 1; r <= excelRowCount; r++) {
+    addExcelRow(r);
   }
 
   // Prepopulate mockup values for demonstration
@@ -963,6 +1029,42 @@ function initExcelGrid() {
     if (input) {
       input.value = excelCellsData[cellId].computed;
     }
+  }
+
+  // Setup infinite scroll listeners
+  const scrollContainer = document.getElementById('excel-sheet-scroll-container');
+  if (scrollContainer) {
+    scrollContainer.addEventListener('scroll', () => {
+      // Infinite Vertical Scroll: Load 20 more rows
+      if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 60) {
+        const target = excelRowCount + 20;
+        for (let r = excelRowCount + 1; r <= target; r++) {
+          excelRowCount++;
+          addExcelRow(excelRowCount);
+        }
+        // Restore values
+        for (const cellId in excelCellsData) {
+          const input = document.getElementById(`excel-cell-${cellId}`);
+          if (input && !input.value) {
+            input.value = excelCellsData[cellId].computed;
+          }
+        }
+      }
+      
+      // Infinite Horizontal Scroll: Load 5 more columns
+      if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 60) {
+        for (let i = 0; i < 5; i++) {
+          addExcelColumn();
+        }
+        // Restore values
+        for (const cellId in excelCellsData) {
+          const input = document.getElementById(`excel-cell-${cellId}`);
+          if (input && !input.value) {
+            input.value = excelCellsData[cellId].computed;
+          }
+        }
+      }
+    });
   }
 }
 
