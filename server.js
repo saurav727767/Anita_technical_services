@@ -508,6 +508,7 @@ app.post('/api/auth/verify-otp', (req, res) => {
       district: user.district || "Patna"
     }
   });
+});
 // Route all /api/gs requests to the Python backend on port 8000
 // app.use('/api/gs', (req, res, next) => {
 //   proxyRequest(8000, req.url, req, res, next);
